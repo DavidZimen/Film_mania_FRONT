@@ -1,22 +1,25 @@
-<nav class="navbar navbar-expand-sm navbar-dark bg-dark">
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#appNavBar" aria-expanded="false" aria-controls="appNavBar">
+<nav class="navbar navbar-expand-md navbar-dark bg-dark">
+  <a class="navbar-brand mb-2 ms-3" href="#">Filmania</a>
+  <button class="navbar-toggler me-2" type="button" data-bs-toggle="collapse" data-bs-target="#appNavBar" aria-controls="appNavBar" aria-expanded="false">
     <span class="navbar-toggler-icon"></span>
   </button>
 
   <div class="collapse navbar-collapse" id="appNavBar">
-    <a class="navbar-brand">Filmania</a>
+    <ul class="navbar-nav me-auto mb-2">
+      <li class="nav-item">
+        <a class="nav-link active" aria-current="page" href="#">Domov</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#">Filmy</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#">Seriály</a>
+      </li>
+    </ul>
 
-    <form class="d-flex input-group w-auto">
-      <input
-        type="search"
-        type="search"
-        class="form-control rounded"
-        placeholder="Search"
-        aria-label="Search"
-      />
-      <span class="input-group-text border-0" id="search-addon">
-        <i class="bi bi-search"></i>
-      </span>
+    <form class="d-flex" role="search">
+      <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+      <button class="btn btn-outline-success" type="submit">Search</button>
     </form>
   </div>
 </nav>
