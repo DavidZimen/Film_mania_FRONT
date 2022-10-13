@@ -22,13 +22,13 @@ const lorem = new LoremIpsum({
 export class ArticleListComponent implements OnInit {
 
   articles: Article[] = [
-    new Article("Nejaky nazov", lorem.generateParagraphs(2), "src/assets/1.jpg"),
-    new Article("Nejaky nazov", lorem.generateParagraphs(2), "src/assets/2.jpg"),
-    new Article("Nejaky nazov", lorem.generateParagraphs(2), "src/assets/3.jpg"),
-    new Article("Nejaky nazov", lorem.generateParagraphs(2), "src/assets/4.jpg"),
-    new Article("Nejaky nazov", lorem.generateParagraphs(2), "src/assets/5.jpg"),
-    new Article("Nejaky nazov", lorem.generateParagraphs(2), "src/assets/6.jpg"),
-    new Article("Nejaky nazov", lorem.generateParagraphs(2), "src/assets/7.jpg"),
+    new Article("Nejaky nazov", lorem.generateParagraphs(2), "assets/1.jpg"),
+    new Article("Nejaky nazov", lorem.generateParagraphs(2), "assets/2.jpg"),
+    new Article("Nejaky nazov", lorem.generateParagraphs(2), "assets/3.jpg"),
+    new Article("Nejaky nazov", lorem.generateParagraphs(2), "assets/4.jpg"),
+    new Article("Nejaky nazov", lorem.generateParagraphs(2), "assets/5.jpg"),
+    new Article("Nejaky nazov", lorem.generateParagraphs(2), "assets/6.jpg"),
+    new Article("Nejaky nazov", lorem.generateParagraphs(2), "assets/7.jpg"),
   ];
 
   constructor() { }
