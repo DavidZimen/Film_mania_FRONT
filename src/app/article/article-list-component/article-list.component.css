@@ -9,3 +9,7 @@ p {
   -webkit-line-clamp: 4;
   -webkit-box-orient: vertical;
 }
+
+.sticky-md-top {
+  top: var(--top-paddaing);
+}

@@ -1,16 +1,16 @@
 <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
-  <a class="navbar-brand ms-3 big-font">Filmania</a>
+  <span class="navbar-brand ms-3 big-font">Filmania</span>
   <button class="navbar-toggler me-2" type="button" data-bs-toggle="collapse" data-bs-target="#appNavBar" aria-controls="appNavBar" aria-expanded="false" title="Action bar">
     <i class="bi bi-list"></i>
   </button>
 
   <div class="collapse navbar-collapse" id="appNavBar">
     <ul class="navbar-nav me-auto mb-2">
-      <li class="nav-item">
-        <a class="nav-link active" aria-current="page" href="#">Domov</a>
+      <li class="nav-item align-self-center">
+        <a class="nav-link" routerLink="/articles_list" aria-current="page">Domov</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="#">Filmy</a>
+        <a class="nav-link" routerLink="/films_list" aria-current="page">Filmy</a>
       </li>
       <li class="nav-item">
         <a class="nav-link" href="#">Seriály</a>
@@ -24,9 +24,9 @@
 
     <div class="navbar-nav ml-auto action-buttons">
       <div class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle mr-4" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Login</a>
+        <a class="nav-link dropdown-toggle me-2" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Login</a>
 
-        <div class="dropdown-menu dropdown-menu-end action-form">
+        <div class="dropdown-menu dropdown-menu-end action-form me-2">
           <form action="#" method="post">
             <div class="form-group m-2">
               <input type="text" class="form-control" placeholder="Username" required>

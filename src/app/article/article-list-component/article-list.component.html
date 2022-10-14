@@ -1,18 +1,27 @@
-<app-nav-bar></app-nav-bar>
-
-<div *ngFor="let article of articles">
-  <div class="card border-dark mt-2">
-    <div class="row">
-      <div class="col-md-4">
-        <img src="{{ article.imgSource }}" class="img-fluid rounded-start" alt="obrazok">
-      </div>
-      <div class="col-md-8">
-        <div class="card-body">
-          <h5 class="card-title">{{ article.artTitle }}</h5>
-          <p class="card-text">{{ article.artParagraph }}</p>
-          <a href="#" class="btn btn-dark">Go somewhere</a>
+<div class="container-md mb-2">
+  <div class="row">
+    <div class="col-lg-9">
+      <!--List of cards with articles-->
+      <div  *ngFor="let article of articles">
+        <div class="card border-dark mt-2">
+          <div class="row">
+            <div class="col-md-4 d-none d-md-block">
+              <img src="{{ article.imgSource }}" class="img-fluid img-thumbnail rounded" alt="obrazok">
+            </div>
+            <div class="col-md-8">
+              <div class="card-body">
+                <h5 class="card-title">{{ article.artTitle }}</h5>
+                <p class="card-text">{{ article.artParagraph }}</p>
+                <a href="#" class="btn btn-dark">Go somewhere</a>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
+    </div>
+
+    <div class="col-lg-3">
+      <app-rec-film-card></app-rec-film-card>
     </div>
   </div>
 </div>
