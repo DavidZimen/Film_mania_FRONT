@@ -12,7 +12,18 @@
               <div class="card-body">
                 <h5 class="card-title">{{ article.artTitle }}</h5>
                 <p class="card-text">{{ article.artParagraph }}</p>
-                <a href="#" class="btn btn-dark">Go somewhere</a>
+                <div class="row">
+                  <div class="col-6">
+                    <a href="#" class="btn btn-dark">Go somewhere</a>
+                  </div>
+
+                  <div class="col-6">
+                    <div class="d-flex flex-row justify-content-end">
+                      <div><img class="avatarPhoto me-2" src="{{ article.artAuthor.authorImage }}" alt="AvatarPhoto"></div>
+                      <div class="align-self-end"><p class="authorText">{{ article.artAuthor.authorName }}</p></div>
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
@@ -20,8 +31,9 @@
       </div>
     </div>
 
-    <div class="col-lg-3">
+    <div class="col-lg-3 sticky-md-top" id="recFilmsWidget">
       <app-rec-film-card></app-rec-film-card>
     </div>
   </div>
 </div>
+<app-footer></app-footer>

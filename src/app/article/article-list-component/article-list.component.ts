@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import {Article} from "../article";
-import {LoremIpsum} from "lorem-ipsum";
+import { Article } from "../article";
+import { LoremIpsum } from "lorem-ipsum";
+import { Author } from "../author";
 
 
 const lorem = new LoremIpsum({
@@ -22,17 +23,20 @@ const lorem = new LoremIpsum({
 export class ArticleListComponent implements OnInit {
 
   articles: Article[] = [
-    new Article("Nejaky nazov", lorem.generateParagraphs(2), "assets/1.jpg"),
-    new Article("Nejaky nazov", lorem.generateParagraphs(2), "assets/2.jpg"),
-    new Article("Nejaky nazov", lorem.generateParagraphs(2), "assets/3.jpg"),
-    new Article("Nejaky nazov", lorem.generateParagraphs(2), "assets/4.jpg"),
-    new Article("Nejaky nazov", lorem.generateParagraphs(2), "assets/5.jpg"),
-    new Article("Nejaky nazov", lorem.generateParagraphs(2), "assets/6.jpg"),
-    new Article("Nejaky nazov", lorem.generateParagraphs(2), "assets/7.jpg"),
+    new Article("Nejaky nazov", lorem.generateParagraphs(2), "assets/1.jpg", new Author('Dusike', "assets/5.jpg")),
+    new Article("Nejaky nazov", lorem.generateParagraphs(2), "assets/2.jpg", new Author('Janike', "assets/3.jpg")),
+    new Article("Nejaky nazov", lorem.generateParagraphs(2), "assets/3.jpg", new Author('Dusike', "assets/5.jpg")),
+    new Article("Nejaky nazov", lorem.generateParagraphs(2), "assets/4.jpg", new Author('Majike', "assets/4.jpg")),
+    new Article("Nejaky nazov", lorem.generateParagraphs(2), "assets/5.jpg", new Author('Dusike', "assets/5.jpg")),
+    new Article("Nejaky nazov", lorem.generateParagraphs(2), "assets/6.jpg", new Author('Dusike', "assets/5.jpg")),
+    new Article("Nejaky nazov", lorem.generateParagraphs(2), "assets/7.jpg", new Author('Ferike', "assets/1.jpg")),
   ];
 
-  constructor() { }
+  constructor() {
+  }
+
 
   ngOnInit(): void { }
-
 }
+
+

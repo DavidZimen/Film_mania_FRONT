@@ -13,3 +13,13 @@ p {
 .sticky-md-top {
   top: var(--top-paddaing);
 }
+
+.avatarPhoto {
+  border-radius: 50%;
+  max-width: 45px;
+  max-height: 45px;
+}
+
+.authorText {
+  color: var(--bs-gray-500);
+}
