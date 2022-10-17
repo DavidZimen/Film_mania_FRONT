@@ -9,6 +9,7 @@ import {AppRoutingModule} from "./app-routing-module/app-routing.module";
 import { FilmListComponent } from './film/film-list/film-list.component';
 import { FooterComponent } from './header-footer/footer/footer.component';
 import { RecFilmCardComponent } from './film/rec-film-card/rec-film-card.component';
+import { ArticleDetailComponent } from './article/article-detail/article-detail.component';
 
 @NgModule({
   declarations: [
@@ -17,7 +18,8 @@ import { RecFilmCardComponent } from './film/rec-film-card/rec-film-card.compone
     ArticleListComponent,
     FilmListComponent,
     FooterComponent,
-    RecFilmCardComponent
+    RecFilmCardComponent,
+    ArticleDetailComponent
   ],
   imports: [
     BrowserModule,

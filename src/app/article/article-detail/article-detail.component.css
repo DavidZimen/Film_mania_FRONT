@@ -1,0 +1,9 @@
+.container-md {
+  background-color: white;
+}
+
+.responsive {
+  width: 90%;
+  height: auto;
+  position: center;
+}

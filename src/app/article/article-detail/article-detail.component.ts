@@ -1,26 +1,26 @@
 import { Component, OnInit } from '@angular/core';
-import { Article } from "../article";
-import { LoremIpsum } from "lorem-ipsum";
-import { Author } from "../author";
-
+import {Article} from "../article";
+import {Author} from "../author";
+import {LoremIpsum} from "lorem-ipsum";
+import {ActivatedRoute} from "@angular/router";
 
 const lorem = new LoremIpsum({
   sentencesPerParagraph: {
-    max: 8,
-    min: 4
+    max: 50,
+    min: 40
   },
   wordsPerSentence: {
-    max: 16,
-    min: 4
+    max: 30,
+    min: 10
   }
 });
 
 @Component({
-  selector: 'app-article-list-component',
-  templateUrl: './article-list.component.html',
-  styleUrls: ['./article-list.component.css']
+  selector: 'app-article-detail',
+  templateUrl: './article-detail.component.html',
+  styleUrls: ['./article-detail.component.css']
 })
-export class ArticleListComponent implements OnInit {
+export class ArticleDetailComponent implements OnInit {
 
   articles: Article[] = [
     new Article(0,"Nejaky nazov", lorem.generateParagraphs(2), "assets/1.jpg", new Author('Dusike', "assets/5.jpg")),
@@ -33,10 +33,15 @@ export class ArticleListComponent implements OnInit {
     new Article(7,"Nejaky nazov", lorem.generateParagraphs(2), "assets/7.jpg", new Author('Ferike', "assets/1.jpg")),
   ];
 
-  constructor() {
+  detailedArticle: Article;
+
+  constructor(private route: ActivatedRoute) {
+    let id = Number(this.route.snapshot.paramMap.get('artId'));
+    console.log(id);
+    this.detailedArticle = this.articles[id];
   }
 
-  ngOnInit(): void { }
+  ngOnInit(): void {
+  }
+
 }
-
-
