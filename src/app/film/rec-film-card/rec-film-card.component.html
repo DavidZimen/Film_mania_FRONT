@@ -1,8 +1,8 @@
-<div class="card border-primary mt-2 sticky-md-top">
+<div class="card border-primary sticky-md-top">
   <div class="card-body">
     <h6 class="card-title">Odporúčané filmy</h6>
-    <ul class="list-group no-bullets" *ngFor="let film of recFilms.slice(0, 10)">
-      <li class="mb-2">{{ film.filmTitle }}</li>
+    <ul class="list-group" *ngFor="let film of recFilms.slice(0, 10)">
+      <li class="list-group-item">{{ film.filmTitle }}</li>
     </ul>
   </div>
 </div>
