@@ -1,4 +1,4 @@
-import {Component, EventEmitter, OnInit, Output, ViewChild} from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output, ViewChild} from '@angular/core';
 import {ArticleService} from "../../services/article.service";
 import {Article} from "../article";
 import {ArticleCreation} from "../article-creation";
@@ -14,6 +14,7 @@ export class ArticleCreationComponent implements OnInit {
   writtenArticle: ArticleCreation;
   @ViewChild('closeButton') closeButton: any;
   @Output() newArticleEvent = new EventEmitter<boolean>();
+  @Input() updateArticle: Article | undefined;
 
   constructor(private articleService: ArticleService) {
     this.writtenArticle = new ArticleCreation();
@@ -41,4 +42,21 @@ export class ArticleCreationComponent implements OnInit {
     }
   }
 
+  onSubmitUpdateArticle(form: NgForm): void {
+    if (form.valid && this.updateArticle) {
+      this.articleService.updateArticle(this.updateArticle).subscribe(
+        {
+          next: (data) => {
+            this.closeButton.nativeElement.click();
+            this.writtenArticle = new ArticleCreation();
+            this.newArticleEvent.emit(true);
+          },
+          error: err => {
+            alert('Something went wrong.');
+          },
+          complete: () => {}
+        }
+      )
+    }
+  }
 }

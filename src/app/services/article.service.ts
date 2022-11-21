@@ -28,4 +28,8 @@ export class ArticleService {
   public addArticle(articleCreation: ArticleCreation): Observable<Article> {
     return this.http.post<Article>(`${this.articlesUrl}/add`, articleCreation);
   }
+
+  public updateArticle(article: Article): Observable<Article> {
+    return this.http.put<Article>(`${this.articlesUrl}/update`, article);
+  }
 }

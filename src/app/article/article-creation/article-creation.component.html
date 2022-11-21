@@ -1,4 +1,7 @@
-<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#writeArticleModal">Napísať článok</button>
+<button *ngIf="updateArticle !== undefined; else updateButton" type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#writeArticleModal">Napísať článok</button>
+<ng-template #updateButton>
+  <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#writeArticleModal">Upraviť</button>
+</ng-template>
 
 <!-- Modal to write article -->
 <div class="modal fade" id="writeArticleModal" tabindex="-1" aria-labelledby="writeArticleModal" aria-hidden="true">
@@ -8,7 +11,8 @@
         <h5 class="modal-title" id="deleteArticleModalTitle">Napísať článok</h5>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" #closeButton></button>
       </div>
-      <form #articleForm="ngForm" (ngSubmit)="onSubmitArticle(articleForm)">
+
+      <form *ngIf="updateArticle !== undefined; else updateForm" #articleForm="ngForm" (ngSubmit)="onSubmitArticle(articleForm)">
         <div class="modal-body">
 
           <div class="form-group">
@@ -27,6 +31,29 @@
           <button type="submit" class="btn btn-success" [disabled]="!articleForm.form.valid">Uložiť</button>
         </div>
       </form>
+
+      <ng-template #updateForm>
+        <form #updateForm="ngForm" (ngSubmit)="onSubmitUpdateArticle(updateForm)">
+          <div class="modal-body">
+
+            <div class="form-group">
+              <label for="article-title-update" class="col-form-label">Nadpis</label>
+              <input type="text" id="article-title-update" class="form-control" [(ngModel)]="updateArticle!.title" required name="article-title">
+            </div>
+
+            <div class="form-group">
+              <label for="article-update" class="col-form-label">Článok</label>
+              <textarea id="article-update" class="form-control" rows="10" [(ngModel)]="updateArticle!.text" required name="article"></textarea>
+            </div>
+
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Zavrieť</button>
+            <button type="submit" class="btn btn-success" [disabled]="!updateForm.form.valid">Uložiť zmeny</button>
+          </div>
+        </form>
+      </ng-template>
+
     </div>
   </div>
 </div>
