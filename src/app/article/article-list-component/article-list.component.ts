@@ -1,7 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnDestroy, OnInit, ViewChild} from '@angular/core';
 import { Article } from "../article";
 import { LoremIpsum } from "lorem-ipsum";
 import { Author } from "../author";
+import {ArticleService} from "../../services/article.service";
+import {Observable, Subscription} from "rxjs";
 
 
 const lorem = new LoremIpsum({
@@ -20,23 +22,40 @@ const lorem = new LoremIpsum({
   templateUrl: './article-list.component.html',
   styleUrls: ['./article-list.component.css']
 })
-export class ArticleListComponent implements OnInit {
+export class ArticleListComponent implements OnInit, OnDestroy {
 
-  articles: Article[] = [
-    new Article(0,"Nejaky nazov", lorem.generateParagraphs(2), "assets/1.jpg", new Author('Dusike', "assets/5.jpg")),
-    new Article(1,"Nejaky nazov", lorem.generateParagraphs(2), "assets/1.jpg", new Author('Dusike', "assets/5.jpg")),
-    new Article(2,"Nejaky nazov", lorem.generateParagraphs(2), "assets/2.jpg", new Author('Janike', "assets/3.jpg")),
-    new Article(3,"Nejaky nazov", lorem.generateParagraphs(2), "assets/3.jpg", new Author('Dusike', "assets/5.jpg")),
-    new Article(4,"Nejaky nazov", lorem.generateParagraphs(2), "assets/4.jpg", new Author('Majike', "assets/4.jpg")),
-    new Article(5,"Nejaky nazov", lorem.generateParagraphs(2), "assets/5.jpg", new Author('Dusike', "assets/5.jpg")),
-    new Article(6,"Nejaky nazov", lorem.generateParagraphs(2), "assets/6.jpg", new Author('Dusike', "assets/5.jpg")),
-    new Article(7,"Nejaky nazov", lorem.generateParagraphs(2), "assets/7.jpg", new Author('Ferike', "assets/1.jpg")),
-  ];
+  @ViewChild('closeButton') closeButton: any;
+  articles: Article[] = [];
 
-  constructor() {
+  constructor(private articleService: ArticleService) {
   }
 
-  ngOnInit(): void { }
+  ngOnInit(): void {
+    this.loadArticles();
+  }
+
+  ngOnDestroy(): void {
+  }
+
+  loadArticles(): void {
+    this.articleService.getAllArticles().subscribe(
+      res => { this.articles = res }
+    )
+  }
+
+  deleteArticle(id: number): void {
+    console.log(id);
+    this.articleService.deleteArcticle(id).subscribe(
+      {
+        next: (data) => {
+          this.loadArticles();
+        },
+        error: (e) => { alert('Doslo ku chybe.') },
+        complete: () => {}
+      }
+    );
+    this.closeButton.nativeElement.click();
+  }
 }
 
 

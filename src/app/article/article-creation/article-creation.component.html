@@ -1,0 +1,32 @@
+<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#writeArticleModal">Napísať článok</button>
+
+<!-- Modal to write article -->
+<div class="modal fade" id="writeArticleModal" tabindex="-1" aria-labelledby="writeArticleModal" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-xl">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="deleteArticleModalTitle">Napísať článok</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" #closeButton></button>
+      </div>
+      <form #articleForm="ngForm" (ngSubmit)="onSubmitArticle(articleForm)">
+        <div class="modal-body">
+
+          <div class="form-group">
+            <label for="article-title" class="col-form-label">Nadpis</label>
+            <input type="text" id="article-title" class="form-control" [(ngModel)]="writtenArticle.title" required name="article-title">
+          </div>
+
+            <div class="form-group">
+              <label for="article" class="col-form-label">Článok</label>
+              <textarea id="article" class="form-control" rows="10" [(ngModel)]="writtenArticle.text" required name="article"></textarea>
+            </div>
+
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Zavrieť</button>
+          <button type="submit" class="btn btn-success" [disabled]="!articleForm.form.valid">Uložiť</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

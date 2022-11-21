@@ -3,17 +3,10 @@ import {Article} from "../article";
 import {Author} from "../author";
 import {LoremIpsum} from "lorem-ipsum";
 import {ActivatedRoute} from "@angular/router";
+import {Subscription} from "rxjs";
+import {ArticleService} from "../../services/article.service";
 
-const lorem = new LoremIpsum({
-  sentencesPerParagraph: {
-    max: 50,
-    min: 40
-  },
-  wordsPerSentence: {
-    max: 30,
-    min: 10
-  }
-});
+
 
 @Component({
   selector: 'app-article-detail',
@@ -22,26 +15,24 @@ const lorem = new LoremIpsum({
 })
 export class ArticleDetailComponent implements OnInit {
 
-  articles: Article[] = [
-    new Article(0,"Nejaky nazov", lorem.generateParagraphs(2), "assets/1.jpg", new Author('Dusike', "assets/5.jpg")),
-    new Article(1,"Nejaky nazov", lorem.generateParagraphs(2), "assets/1.jpg", new Author('Dusike', "assets/5.jpg")),
-    new Article(2,"Nejaky nazov", lorem.generateParagraphs(2), "assets/2.jpg", new Author('Janike', "assets/3.jpg")),
-    new Article(3,"Nejaky nazov", lorem.generateParagraphs(2), "assets/3.jpg", new Author('Dusike', "assets/5.jpg")),
-    new Article(4,"Nejaky nazov", lorem.generateParagraphs(2), "assets/4.jpg", new Author('Majike', "assets/4.jpg")),
-    new Article(5,"Nejaky nazov", lorem.generateParagraphs(2), "assets/5.jpg", new Author('Dusike', "assets/5.jpg")),
-    new Article(6,"Nejaky nazov", lorem.generateParagraphs(2), "assets/6.jpg", new Author('Dusike', "assets/5.jpg")),
-    new Article(7,"Nejaky nazov", lorem.generateParagraphs(2), "assets/7.jpg", new Author('Ferike', "assets/1.jpg")),
-  ];
+  detailedArticle: Article | undefined;
+  articleId : number;
 
-  detailedArticle: Article;
-
-  constructor(private route: ActivatedRoute) {
-    let id = Number(this.route.snapshot.paramMap.get('artId'));
-    console.log(id);
-    this.detailedArticle = this.articles[id];
+  constructor(
+    private articleService: ArticleService,
+    private route: ActivatedRoute
+  ) {
+    this.articleId = Number(this.route.snapshot.paramMap.get('artId'));
   }
 
   ngOnInit(): void {
+    this.loadOneArticle(this.articleId);
+  }
+
+  loadOneArticle(id: number): void {
+    this.articleService.getArticleById(id).subscribe(
+      article => { this.detailedArticle = article }
+    )
   }
 
 }

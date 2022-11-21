@@ -10,6 +10,10 @@ import { FilmListComponent } from './film/film-list/film-list.component';
 import { FooterComponent } from './header-footer/footer/footer.component';
 import { RecFilmCardComponent } from './film/rec-film-card/rec-film-card.component';
 import { ArticleDetailComponent } from './article/article-detail/article-detail.component';
+import { HttpClientModule } from "@angular/common/http";
+import { ArticleCreationComponent } from './article/article-creation/article-creation.component';
+import { RichTextEditorModule } from '@syncfusion/ej2-angular-richtexteditor'
+import {FormsModule} from "@angular/forms";
 
 @NgModule({
   declarations: [
@@ -19,12 +23,16 @@ import { ArticleDetailComponent } from './article/article-detail/article-detail.
     FilmListComponent,
     FooterComponent,
     RecFilmCardComponent,
-    ArticleDetailComponent
+    ArticleDetailComponent,
+    ArticleCreationComponent
   ],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
-    AppRoutingModule
+    AppRoutingModule,
+    HttpClientModule,
+    RichTextEditorModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

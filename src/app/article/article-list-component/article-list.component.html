@@ -1,27 +1,51 @@
 <div class="container-md mb-2">
   <div class="row">
+    <app-article-creation (newArticleEvent)="loadArticles()"></app-article-creation>
+  </div>
+  <div class="row">
     <div class="col-lg-9">
       <!--List of cards with articles-->
       <div  *ngFor="let article of articles">
         <div class="card border-dark mt-2">
           <div class="row">
             <div class="col-md-4 d-none d-md-block">
-              <img src="{{ article.imgSource }}" class="img-fluid img-thumbnail rounded" alt="obrazok">
+              <img src="assets/1.jpg" class="img-fluid img-thumbnail rounded" alt="obrazok">
             </div>
             <div class="col-md-8">
               <div class="card-body">
-                <h5 class="card-title">{{ article.artTitle }}</h5>
-                <p class="card-text">{{ article.artParagraph }}</p>
+                <h5 class="card-title">{{ article.title }}</h5>
+                <p class="card-text">{{ article.text }}</p>
                 <div class="row">
                   <div class="col-6">
-                    <a [routerLink]="['/article', article.artId]" class="btn btn-dark">Otvoriť článok</a>
+                    <a [routerLink]="['/article', article.id]" class="btn btn-dark">Otvoriť článok</a>
                   </div>
 
-                  <div class="col-6">
-                    <div class="d-flex flex-row justify-content-end">
-                      <div><img class="avatarPhoto me-2" src="{{ article.artAuthor.authorImage }}" alt="AvatarPhoto"></div>
-                      <div class="align-self-end"><p class="authorText">{{ article.artAuthor.authorName }}</p></div>
+                  <div class="col-6 text-end">
+<!--                    <div class="d-flex flex-row justify-content-end">-->
+<!--                      <div><img class="avatarPhoto me-2" src="{{ article.artAuthor.authorImage }}" alt="AvatarPhoto"></div>-->
+<!--                      <div class="align-self-end"><p class="authorText">{{ article.artAuthor.authorName }}</p></div>-->
+<!--                    </div>-->
+                    <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deleteArticleModal">Vymazať</button>
+
+                    <!-- Modal -->
+                    <div class="modal fade" id="deleteArticleModal" tabindex="-1" aria-labelledby="deleteArticleModal" aria-hidden="true">
+                      <div class="modal-dialog">
+                        <div class="modal-content">
+                          <div class="modal-header">
+                            <h5 class="modal-title" id="deleteArticleModalTitle">Varovanie</h5>
+                            <button type="button" class="btn-close" #closeButton data-bs-dismiss="modal" aria-label="Close"></button>
+                          </div>
+                          <div class="modal-body">
+                            Ste si istý, že chcete vymazať tento článok ?
+                          </div>
+                          <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Zavrieť</button>
+                            <button type="button" class="btn btn-danger" (click)="deleteArticle(article.id)">Vymazať</button>
+                          </div>
+                        </div>
+                      </div>
                     </div>
+
                   </div>
                 </div>
               </div>
@@ -37,3 +61,5 @@
   </div>
 </div>
 <app-footer></app-footer>
+
+
