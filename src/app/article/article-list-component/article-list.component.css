@@ -1,4 +1,4 @@
-.card-img-top {
+.img-thumbnail {
   max-height: 100%;
   max-width: 100%;
 }
@@ -10,10 +10,6 @@ p {
   -webkit-box-orient: vertical;
 }
 
-.sticky-md-top {
-  top: var(--top-paddaing);
-}
-
 .avatarPhoto {
   border-radius: 50%;
   max-width: 45px;
@@ -22,4 +18,8 @@ p {
 
 .authorText {
   color: var(--bs-gray-500);
+}
+
+.container-md {
+  background-color: var(--bs-light);
 }
