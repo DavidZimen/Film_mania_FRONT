@@ -9,6 +9,7 @@ import {LoginRegisterModule} from "./login-register/login-register.module";
 import {HeaderFooterModule} from "./header-footer/header-footer-module";
 import {ArticleModule} from "./article/article.module";
 import {FilmModule} from "./film/film.module";
+import {ToastModule} from "./toast/toast.module";
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import {FilmModule} from "./film/film.module";
     LoginRegisterModule,
     HeaderFooterModule,
     ArticleModule,
-    FilmModule
+    FilmModule,
+    ToastModule
   ],
   providers: [],
   bootstrap: [AppComponent]

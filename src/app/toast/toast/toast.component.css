@@ -1,0 +1,15 @@
+.Success {
+  background-color: #198754;
+}
+
+.Info {
+  background-color: #0d6efd;
+}
+
+.Warning {
+  background-color: #ffc107;
+}
+
+.Error {
+  background-color: #dc3545;
+}
