@@ -1,4 +1,4 @@
-<button *ngIf="updateArticle !== undefined; else updateButton" type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#writeArticleModal">Napísať článok</button>
+<button *ngIf="updateArticle === undefined; else updateButton" type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#writeArticleModal">Napísať článok</button>
 <ng-template #updateButton>
   <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#writeArticleModal">Upraviť</button>
 </ng-template>
@@ -12,7 +12,7 @@
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" #closeButton></button>
       </div>
 
-      <form *ngIf="updateArticle !== undefined; else updateForm" #articleForm="ngForm" (ngSubmit)="onSubmitArticle(articleForm)">
+      <form *ngIf="updateArticle === undefined; else updateForm" #articleForm="ngForm" (ngSubmit)="onSubmitArticle(articleForm)">
         <div class="modal-body">
 
           <div class="form-group">

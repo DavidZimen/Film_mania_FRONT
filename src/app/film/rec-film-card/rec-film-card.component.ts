@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {Film} from "../film";
+import {Film} from "../../entities/film";
 
 @Component({
   selector: 'app-rec-film-card',

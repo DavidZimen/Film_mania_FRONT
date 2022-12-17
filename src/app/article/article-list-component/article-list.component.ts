@@ -1,21 +1,7 @@
 import {Component, OnDestroy, OnInit, ViewChild} from '@angular/core';
-import { Article } from "../article";
+import { Article } from "../../entities/article";
 import { LoremIpsum } from "lorem-ipsum";
-import { Author } from "../author";
 import {ArticleService} from "../../services/article.service";
-import {Observable, Subscription} from "rxjs";
-
-
-const lorem = new LoremIpsum({
-  sentencesPerParagraph: {
-    max: 8,
-    min: 4
-  },
-  wordsPerSentence: {
-    max: 16,
-    min: 4
-  }
-});
 
 @Component({
   selector: 'app-article-list-component',
@@ -47,10 +33,10 @@ export class ArticleListComponent implements OnInit, OnDestroy {
     console.log(id);
     this.articleService.deleteArcticle(id).subscribe(
       {
-        next: (data) => {
+        next: () => {
           this.loadArticles();
         },
-        error: (e) => { alert('Doslo ku chybe.') },
+        error: () => { alert('Doslo ku chybe.') },
         complete: () => {}
       }
     );

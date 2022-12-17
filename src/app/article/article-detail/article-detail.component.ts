@@ -1,9 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import {Article} from "../article";
-import {Author} from "../author";
-import {LoremIpsum} from "lorem-ipsum";
+import {Article} from "../../entities/article";
 import {ActivatedRoute} from "@angular/router";
-import {Subscription} from "rxjs";
 import {ArticleService} from "../../services/article.service";
 
 

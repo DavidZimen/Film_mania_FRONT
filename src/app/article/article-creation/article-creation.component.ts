@@ -1,7 +1,7 @@
 import {Component, EventEmitter, Input, OnInit, Output, ViewChild} from '@angular/core';
 import {ArticleService} from "../../services/article.service";
-import {Article} from "../article";
-import {ArticleCreation} from "../article-creation";
+import {Article} from "../../entities/article";
+import {ArticleCreation} from "../../dto/article-creation";
 import {NgForm} from "@angular/forms";
 
 @Component({
@@ -33,7 +33,7 @@ export class ArticleCreationComponent implements OnInit {
             this.writtenArticle = new ArticleCreation();
             this.newArticleEvent.emit(true);
           },
-          error: err => {
+          error: () => {
             alert('Something went wrong.');
           },
           complete: () => {}
@@ -51,7 +51,7 @@ export class ArticleCreationComponent implements OnInit {
             this.writtenArticle = new ArticleCreation();
             this.newArticleEvent.emit(true);
           },
-          error: err => {
+          error: () => {
             alert('Something went wrong.');
           },
           complete: () => {}
