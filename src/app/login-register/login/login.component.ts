@@ -1,8 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import {LoginAppUser} from "../../dto/login-app-user";
 import {LoginRegisterService} from "../../services/login-register.service";
-import {ActivatedRoute, Router} from "@angular/router";
 import {ToastService} from "../../services/toast.service";
+import {HttpErrorResponse} from "@angular/common/http";
+import {UserService} from "../../services/user.service";
+import {Dialog, DialogRef} from "@angular/cdk/dialog";
+import {RegisterComponent} from "../register/register.component";
 
 @Component({
   selector: 'app-login',
@@ -12,13 +15,12 @@ import {ToastService} from "../../services/toast.service";
 export class LoginComponent implements OnInit {
 
     userDto: LoginAppUser = new LoginAppUser('', '');
-    unauthorized: boolean = false;
-    notFound: boolean = false;
+    stayLoggedIn: boolean = false;
+    dialog!: Dialog;
 
     constructor(
       private loginRegisterService: LoginRegisterService,
-      private route: ActivatedRoute,
-      private router: Router,
+      private userService: UserService,
       private toastService: ToastService
     ) { }
 
@@ -26,22 +28,29 @@ export class LoginComponent implements OnInit {
     }
 
     login(): void {
-      this.unauthorized = false;
-      this.notFound = false;
-
-      console.log("tu som")
-
       this.loginRegisterService.loginUser(this.userDto).subscribe({
-        next: (mail) => {
-          //TODO mail to local storage
-          console.log(mail);
-          this.toastService.showSuccessToast("Prihlásenie", "Prihlásenie prebehlo úspešne.");
+        next: (user) => {
+          localStorage.setItem('user', JSON.stringify(user));
+          this.loginRegisterService.getRolesOfUser(user.id).subscribe((role) => {
+            localStorage.setItem('role', JSON.stringify(role));
+            this.loginRegisterService.getPrivilegesOfRoles(role.id).subscribe((privileges) => {
+              localStorage.setItem('privileges', JSON.stringify(privileges));
+              localStorage.setItem('stayLogged', JSON.stringify(this.stayLoggedIn));
+              this.userService.findLoggedInUser();
+            })
+          });
+
+          this.toastService.showSuccessToast("Prihásenie prebehlo úspešne", "");
         },
-        error: (error) => {
-          console.error(error);
-          this.toastService.showErrorToast("Prihlasenie", "Nieco sa pokazilo");
+        error: (error: HttpErrorResponse) => {
+          if (error.status === 401) this.toastService.showErrorToast("Chyba prihlásenia", "Zadané heslo nie je správne");
+          if (error.status === 404) this.toastService.showErrorToast("Chyba prihlásenia", "Zadaný používateľ neexistuje");
         },
         complete: () => {}
       });
+    }
+
+    openRegisterDialog(): void {
+      $('#registerModal').appendTo("body").modal('show');
     }
 }

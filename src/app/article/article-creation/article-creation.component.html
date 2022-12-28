@@ -1,6 +1,6 @@
-<button *ngIf="updateArticle === undefined; else updateButton" type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#writeArticleModal">Napísať článok</button>
+<button *ngIf="updateArticle === undefined && canWriteOrUpdateArticle(); else updateButton" type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#writeArticleModal">Napísať článok</button>
 <ng-template #updateButton>
-  <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#writeArticleModal">Upraviť</button>
+  <button *ngIf="canWriteOrUpdateArticle()" type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#writeArticleModal">Upraviť</button>
 </ng-template>
 
 <!-- Modal to write article -->

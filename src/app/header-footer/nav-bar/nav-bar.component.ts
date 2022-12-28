@@ -1,6 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import {LoginAppUser} from "../../dto/login-app-user";
-import {LoginRegisterService} from "../../services/login-register.service";
+import {Component, Input, OnInit} from '@angular/core';
+import {AppUser} from "../../entities/app-user";
 
 @Component({
   selector: 'app-nav-bar',
@@ -9,20 +8,11 @@ import {LoginRegisterService} from "../../services/login-register.service";
 })
 export class NavBarComponent implements OnInit {
 
-  userDto: LoginAppUser = new LoginAppUser('', '');
+  @Input()
+  appUser!: AppUser | null;
 
-  constructor(private loginRegisterService: LoginRegisterService,) { }
+  constructor() { }
 
   ngOnInit(): void {
-  }
-
-  login(): void {
-    this.loginRegisterService.loginUser(this.userDto).subscribe((result) => {
-      if (result) {
-        alert("Login succesfull");
-      } else if (!result) {
-        alert("Something went wrong.");
-      }
-    });
   }
 }

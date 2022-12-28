@@ -3,6 +3,7 @@ import {ArticleService} from "../../services/article.service";
 import {Article} from "../../entities/article";
 import {ArticleCreation} from "../../dto/article-creation";
 import {NgForm} from "@angular/forms";
+import {Privilege} from "../../dto/privilege";
 
 @Component({
   selector: 'app-article-creation',
@@ -58,5 +59,16 @@ export class ArticleCreationComponent implements OnInit {
         }
       )
     }
+  }
+
+  canWriteOrUpdateArticle(): boolean {
+    let privilegesString = localStorage.getItem('privileges');
+
+    if (privilegesString === null) return false;
+
+    let privileges = JSON.parse(privilegesString) as Privilege[];
+    let privilege = privileges.find((privilege) => privilege.name === 'WRITE_PRIVILEGE');
+
+    return privilege !== undefined;
   }
 }

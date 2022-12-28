@@ -10,23 +10,25 @@ import {HeaderFooterModule} from "./header-footer/header-footer-module";
 import {ArticleModule} from "./article/article.module";
 import {FilmModule} from "./film/film.module";
 import {ToastModule} from "./toast/toast.module";
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
-  declarations: [
-    AppComponent,
-  ],
-  imports: [
-    BrowserModule,
-    BrowserAnimationsModule,
-    HttpClientModule,
-    AppRoutingModule,
-    LoginRegisterModule,
-    HeaderFooterModule,
-    ArticleModule,
-    FilmModule,
-    ToastModule
-  ],
-  providers: [],
-  bootstrap: [AppComponent]
+    declarations: [
+        AppComponent
+    ],
+    imports: [
+        BrowserModule,
+        BrowserAnimationsModule,
+        HttpClientModule,
+        AppRoutingModule,
+        LoginRegisterModule,
+        HeaderFooterModule,
+        ArticleModule,
+        FilmModule,
+        ToastModule,
+        NgbModule
+    ],
+    providers: [],
+    bootstrap: [AppComponent]
 })
 export class AppModule { }
