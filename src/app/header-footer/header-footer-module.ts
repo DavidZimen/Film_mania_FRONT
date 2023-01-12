@@ -17,7 +17,7 @@ import {AvatarComponent} from "./avatar/avatar.component";
     CommonModule,
     FormsModule,
     AppRoutingModule,
-    LoginRegisterModule
+    LoginRegisterModule,
   ],
   exports: [
     FooterComponent,

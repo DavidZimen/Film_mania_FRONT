@@ -5,6 +5,7 @@ export class RegistrationRequestDto {
     public password: string,
     public email: string,
     public birth_date: String | null,
-    public role: string) {
+    public role: string,
+    public avatarId: number | null) {
   }
 }

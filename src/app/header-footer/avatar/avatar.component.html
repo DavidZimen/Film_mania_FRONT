@@ -1,8 +1,16 @@
 <div class="navbar-nav ml-auto action-buttons me-3">
+  <li *ngIf="canWriteOrUpdateArticle()" class="nav-item align-self-center">
+    <a class="nav-link" routerLink="/article_creation" aria-current="page">Napísať článok</a>
+  </li>
+
+  <li *ngIf="canWriteOrUpdateArticle()" class="nav-item align-self-center">
+    <a class="nav-link" routerLink="/author_articles/{{authorId}}" aria-current="page">Moje články</a>
+  </li>
+
   <li class="nav-item dropdown">
     <a class="nav-link dropdown-toggle d-flex align-items-center" href="#" role="button" id="navbarDropdownMenuLink" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-      <img src="https://mdbcdn.b-cdn.net/img/Photos/Avatars/img (31).webp" class="rounded-circle"
-           height="35" alt="Avatar" loading="lazy" />
+      <img [src]="avatarImage" class="rounded-circle"
+           height="35" width="35" alt="Avatar" loading="lazy" />
     </a>
     <ul class="dropdown-menu dropdown-menu-end me-3" aria-labelledby="navbarDropdownMenuLink">
       <li>

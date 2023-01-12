@@ -5,13 +5,17 @@ import { ArticleListComponent } from "../article/article-list-component/article-
 import {FilmListComponent} from "../film/film-list/film-list.component";
 import {ArticleDetailComponent} from "../article/article-detail/article-detail.component";
 import {RegisterComponent} from "../login-register/register/register.component";
+import {ArticleCreationComponent} from "../article/article-creation/article-creation.component";
+import {AuthorArticlesComponent} from "../article/author-articles/author-articles.component";
 
 const routes: Routes = [
   { path: '', redirectTo: '/articles_list', pathMatch: 'full' },
   { path: 'articles_list', component: ArticleListComponent },
   { path: 'films_list', component: FilmListComponent },
   { path: 'article/:artId', component: ArticleDetailComponent },
-  { path: 'register', component: RegisterComponent }
+  { path: 'register', component: RegisterComponent },
+  { path: 'article_creation', component: ArticleCreationComponent },
+  { path: 'author_articles/:authorId', component: AuthorArticlesComponent }
 ];
 
 @NgModule({

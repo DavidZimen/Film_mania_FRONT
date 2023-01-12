@@ -31,4 +31,8 @@ export class LoginRegisterService {
   public registerUser(registrationRequestDto: RegistrationRequestDto): Observable<LoggedInUser> {
     return this.http.post<LoggedInUser>(`${this.loginUrl}/registration`, registrationRequestDto);
   }
+
+  public uploadAvatarImage(avatarImage: FormData): Observable<number> {
+    return this.http.post<number>(`${this.loginUrl}/registration/avatarUpload`, avatarImage);
+  }
 }

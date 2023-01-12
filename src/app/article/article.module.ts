@@ -7,14 +7,16 @@ import {HeaderFooterModule} from "../header-footer/header-footer-module";
 import {FilmModule} from "../film/film.module";
 import {FormsModule} from "@angular/forms";
 import {AppRoutingModule} from "../app-routing-module/app-routing.module";
-
-
+import { ArticleUpdateComponent } from './article-update/article-update.component';
+import { AuthorArticlesComponent } from './author-articles/author-articles.component';
 
 @NgModule({
   declarations: [
     ArticleCreationComponent,
     ArticleDetailComponent,
-    ArticleListComponent
+    ArticleListComponent,
+    ArticleUpdateComponent,
+    AuthorArticlesComponent
   ],
   imports: [
     CommonModule,
@@ -26,7 +28,9 @@ import {AppRoutingModule} from "../app-routing-module/app-routing.module";
   exports: [
     ArticleCreationComponent,
     ArticleDetailComponent,
-    ArticleListComponent
+    ArticleListComponent,
+    ArticleUpdateComponent,
+    AuthorArticlesComponent
   ]
 })
 export class ArticleModule { }
