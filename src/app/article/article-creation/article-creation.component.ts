@@ -6,6 +6,7 @@ import {UserService} from "../../services/user.service";
 import {HttpErrorResponse} from "@angular/common/http";
 import {ToastService} from "../../services/toast.service";
 import {Router} from "@angular/router";
+import {Location} from "@angular/common";
 
 @Component({
   selector: 'app-article-creation',
@@ -18,7 +19,13 @@ export class ArticleCreationComponent implements OnInit {
   uploadedImage!: File;
   @ViewChild('closeButton') closeButton: any;
 
-  constructor(private articleService: ArticleService, private userService: UserService, private toastService: ToastService, private router: Router) {
+  constructor(
+    private articleService: ArticleService,
+    private userService: UserService,
+    private toastService: ToastService,
+    private router: Router,
+    private location: Location)
+  {
     this.writtenArticle = new ArticleCreation();
     this.userService.loggedInUser$.subscribe((user) => {
       this.writtenArticle.author_email = user?.user?.email;
@@ -47,15 +54,11 @@ export class ArticleCreationComponent implements OnInit {
           this.uploadArticle();
         },
         error: (err: HttpErrorResponse) => {
-          this.toastService.showErrorToast("Chyba pri ukladaní obrázku v článku", "");
+          this.toastService.showErrorToast("Chyba pri ukladaní obrázku v článku");
         },
         complete: () => {}
       });
     }
-  }
-
-  public onImageUpload(event: any): void {
-    this.uploadedImage = event.target.files[0];
   }
 
   uploadArticle(): void {
@@ -64,13 +67,21 @@ export class ArticleCreationComponent implements OnInit {
         next: (data) => {
           //this.closeButton.nativeElement.click();
           this.writtenArticle = new ArticleCreation();
-          this.toastService.showSuccessToast("Článok úspešne napísaný", "");
-          setTimeout( () => { this.router.navigate(['articles_list']) }, 500)
+          this.toastService.showSuccessToast("Článok úspešne napísaný");
+          setTimeout( () => { this.router.navigate(['home']) }, 500)
         },
         error: () => {
-          this.toastService.showErrorToast("Chyba pri ukladaní článku", "");
+          this.toastService.showErrorToast("Chyba pri ukladaní článku");
         },
         complete: () => {}
       });
+  }
+
+  public onImageUpload(event: any): void {
+    this.uploadedImage = event.target.files[0];
+  }
+
+  goBack(): void {
+    this.location.back();
   }
 }

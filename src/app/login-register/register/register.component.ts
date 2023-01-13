@@ -6,6 +6,7 @@ import {LoginRegisterService} from "../../services/login-register.service";
 import {UserService} from "../../services/user.service";
 import {HttpErrorResponse} from "@angular/common/http";
 import {Router} from "@angular/router";
+import {Utils} from "../../utils/utils";
 
 @Component({
   selector: 'app-register',
@@ -35,15 +36,7 @@ export class RegisterComponent implements OnInit {
       return;
     }
 
-    if (+this.object.day < 10 && +this.object.month < 10) {
-      this.registrationRequestDto.birth_date = `0${this.object.day}.0${this.object.month}.${this.object.year}`;
-    } else if (+this.object.day < 10 && +this.object.month > 10) {
-      this.registrationRequestDto.birth_date = `0${this.object.day}.${this.object.month}.${this.object.year}`;
-    } else if (+this.object.day > 10 && +this.object.month < 10) {
-      this.registrationRequestDto.birth_date = `${this.object.day}.0${this.object.month}.${this.object.year}`;
-    } else {
-      this.registrationRequestDto.birth_date = `${this.object.day}.${this.object.month}.${this.object.year}`;
-    }
+    this.registrationRequestDto.birth_date = Utils.formatDate(+this.object.day, +this.object.month, +this.object.year);
 
     const avatarImage = new FormData();
     avatarImage.append('image', this.uploadedImage);
@@ -64,8 +57,8 @@ export class RegisterComponent implements OnInit {
               })
             });
 
-            this.toastService.showSuccessToast("Registrácia prebehla úspešne", "");
-            this.router.navigate(['articles_list']);
+            this.toastService.showSuccessToast("Registrácia prebehla úspešne");
+            this.router.navigate(['home']);
           },
           error: (err: HttpErrorResponse) => {
             console.log(this.registrationRequestDto);

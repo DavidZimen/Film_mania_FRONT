@@ -11,10 +11,14 @@ import {ArticleModule} from "./article/article.module";
 import {FilmModule} from "./film/film.module";
 import {ToastModule} from "./toast/toast.module";
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
+import {HomeModule} from "./home/home.module";
+import {PaginationModule} from "./pagination/pagination.module";
 
 @NgModule({
     declarations: [
-        AppComponent
+        AppComponent,
+        PageNotFoundComponent
     ],
     imports: [
         BrowserModule,
@@ -26,6 +30,8 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
         ArticleModule,
         FilmModule,
         ToastModule,
+        HomeModule,
+        PaginationModule,
         NgbModule
     ],
     providers: [],

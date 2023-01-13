@@ -43,6 +43,6 @@ export class ArticleService {
   }
 
   public updateArticleImage(articleImage: FormData): Observable<number> {
-    return this.http.put<number>(`${this.articlesUrl}/articleImageUpload`, articleImage);
+    return this.http.put<number>(`${this.articlesUrl}/articleImageUpdate`, articleImage);
   }
 }

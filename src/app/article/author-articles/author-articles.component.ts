@@ -3,7 +3,8 @@ import {ArticleInAuthorListDto} from "../../dto/article-in-author-list-dto";
 import {ArticleService} from "../../services/article.service";
 import {ToastService} from "../../services/toast.service";
 import {HttpErrorResponse} from "@angular/common/http";
-import {ActivatedRoute} from "@angular/router";
+import {ActivatedRoute, Router} from "@angular/router";
+import {PermissionService} from "../../services/permission.service";
 
 @Component({
   selector: 'app-author-articles',
@@ -13,11 +14,19 @@ import {ActivatedRoute} from "@angular/router";
 export class AuthorArticlesComponent implements OnInit {
 
   articles: ArticleInAuthorListDto[] = [];
-  @Input() authorId!: number;
-  @ViewChild('closeButton') closeButton: any;
+  authorId!: number;
 
-  constructor(private articleService: ArticleService, private toastService: ToastService, private route: ActivatedRoute) {
+  constructor(
+    private articleService: ArticleService,
+    private permissionService: PermissionService,
+    private toastService: ToastService,
+    private router: Router,
+    private route: ActivatedRoute)
+  {
     this.authorId = +this.route.snapshot.paramMap.get('authorId')!;
+    if (!this.permissionService.isCorrectAuthor(this.authorId)) {
+      this.router.navigate(['**']);
+    }
   }
 
   ngOnInit(): void {
@@ -30,22 +39,20 @@ export class AuthorArticlesComponent implements OnInit {
         this.articles = articles;
       },
       error: err => {
-        this.toastService.showErrorToast("Chyba pri načítavaní článkov.", "");
+        this.toastService.showErrorToast("Chyba pri načítavaní článkov.");
       },
       complete: () => {}
     });
   }
 
   deleteArticle(articleId: number): void {
-    console.log(articleId);
     this.articleService.deleteArticle(articleId).subscribe({
       next: (res) => {
+        this.toastService.showSuccessToast("Článok úspešne vymazaný.");
         this.loadAuthorArticles();
-        this.toastService.showSuccessToast("Článok úspešne vymazaný.", "");
-        this.closeButton.nativeElement.click();
       },
       error: (err: HttpErrorResponse) => {
-        this.toastService.showErrorToast("Chyba pri mazaní článku", "");
+        this.toastService.showErrorToast("Chyba pri mazaní článku");
       },
       complete: () => {}
     });

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {Article} from "../../entities/article";
 import {ActivatedRoute} from "@angular/router";
 import {ArticleService} from "../../services/article.service";
+import {ArticleInMainListDto} from "../../dto/article-in-main-list-dto";
 
 
 
@@ -12,7 +13,7 @@ import {ArticleService} from "../../services/article.service";
 })
 export class ArticleDetailComponent implements OnInit {
 
-  detailedArticle: Article | undefined;
+  detailedArticle: ArticleInMainListDto | undefined;
   articleId : number;
 
   constructor(
@@ -28,8 +29,8 @@ export class ArticleDetailComponent implements OnInit {
 
   loadOneArticle(id: number): void {
     this.articleService.getArticleById(id).subscribe(
-      article => { this.detailedArticle = article }
-    )
+      (article) => this.detailedArticle = article
+    );
   }
 
 }

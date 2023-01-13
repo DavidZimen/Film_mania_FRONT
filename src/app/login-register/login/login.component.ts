@@ -40,7 +40,7 @@ export class LoginComponent implements OnInit {
             })
           });
 
-          this.toastService.showSuccessToast("Prihásenie prebehlo úspešne", "");
+          this.toastService.showSuccessToast("Prihásenie prebehlo úspešne");
         },
         error: (error: HttpErrorResponse) => {
           if (error.status === 401) this.toastService.showErrorToast("Chyba prihlásenia", "Zadané heslo nie je správne");

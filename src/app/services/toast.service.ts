@@ -14,19 +14,19 @@ export class ToastService {
     this.toastEvents = this._toastEvents.asObservable();
   }
 
-  showSuccessToast(title: string, message: string): void {
+  showSuccessToast(title: string, message: string | undefined = undefined): void {
     this._toastEvents.next(new ToastEvent(title, message, EventType.Success));
   }
 
-  showErrorToast(title: string, message: string): void {
+  showErrorToast(title: string, message: string | undefined = undefined): void {
     this._toastEvents.next(new ToastEvent(title, message, EventType.Error));
   }
 
-  showWarningToast(title: string, message: string): void {
+  showWarningToast(title: string, message: string | undefined = undefined): void {
     this._toastEvents.next(new ToastEvent(title, message, EventType.Warning));
   }
 
-  showInfoToast(title: string, message: string): void {
+  showInfoToast(title: string, message: string | undefined = undefined): void {
     this._toastEvents.next(new ToastEvent(title, message, EventType.Info));
   }
 }

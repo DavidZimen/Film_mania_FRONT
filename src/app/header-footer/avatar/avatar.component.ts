@@ -23,7 +23,6 @@ export class AvatarComponent implements OnInit {
 
   logout(event: any): void {
     this.userService.logout();
-    event.preventDefault();
   }
 
   canWriteOrUpdateArticle(): boolean {

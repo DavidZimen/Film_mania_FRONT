@@ -14,7 +14,7 @@ export class ToastComponent implements OnInit {
   title!: string;
 
   @Input()
-  message!: string;
+  message: string | undefined;
 
   @Input()
   type!: EventType;
@@ -38,7 +38,7 @@ export class ToastComponent implements OnInit {
       this.toastEl.nativeElement,
       {
         autohide: true,
-        delay: 5000,
+        delay: 3000,
       }
     );
 

@@ -9,6 +9,7 @@ import {FormsModule} from "@angular/forms";
 import {AppRoutingModule} from "../app-routing-module/app-routing.module";
 import { ArticleUpdateComponent } from './article-update/article-update.component';
 import { AuthorArticlesComponent } from './author-articles/author-articles.component';
+import {NgbModalModule, NgbModule} from "@ng-bootstrap/ng-bootstrap";
 
 @NgModule({
   declarations: [
@@ -23,7 +24,9 @@ import { AuthorArticlesComponent } from './author-articles/author-articles.compo
     FormsModule,
     HeaderFooterModule,
     FilmModule,
-    AppRoutingModule
+    AppRoutingModule,
+    NgbModule,
+    NgbModalModule
   ],
   exports: [
     ArticleCreationComponent,

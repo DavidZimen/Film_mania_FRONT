@@ -1,4 +1,4 @@
-import {Component, OnDestroy, OnInit} from '@angular/core';
+import {Component, Input, OnDestroy, OnInit} from '@angular/core';
 import {ArticleService} from "../../services/article.service";
 import {ArticleInMainListDto} from "../../dto/article-in-main-list-dto";
 
@@ -7,25 +7,16 @@ import {ArticleInMainListDto} from "../../dto/article-in-main-list-dto";
   templateUrl: './article-list.component.html',
   styleUrls: ['./article-list.component.css']
 })
-export class ArticleListComponent implements OnInit, OnDestroy {
+export class ArticleListComponent implements OnInit {
 
-  articles: ArticleInMainListDto[] = [];
+  @Input() articles: ArticleInMainListDto[] = [];
 
-  constructor(private articleService: ArticleService) {
+  constructor() {
   }
 
   ngOnInit(): void {
-    this.loadArticles();
   }
 
-  ngOnDestroy(): void {
-  }
-
-  loadArticles(): void {
-    this.articleService.getAllArticles().subscribe(
-      (res) => { this.articles = res }
-    )
-  }
 }
 
 

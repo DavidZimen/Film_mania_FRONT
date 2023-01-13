@@ -10,5 +10,5 @@
     <strong class="me-auto">{{ title }}</strong>
     <button type="button" class="btn-close" aria-label="Close" (click)="hide()"></button>
   </div>
-  <div class="toast-body">{{ message }}</div>
+  <div *ngIf="message !== undefined" class="toast-body">{{ message }}</div>
 </div>
