@@ -14,6 +14,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import {HomeModule} from "./home/home.module";
 import {PaginationModule} from "./pagination/pagination.module";
+import {AdminModule} from "./admin/admin.module";
 
 @NgModule({
     declarations: [
@@ -31,6 +32,7 @@ import {PaginationModule} from "./pagination/pagination.module";
         FilmModule,
         ToastModule,
         HomeModule,
+        AdminModule,
         PaginationModule,
         NgbModule
     ],

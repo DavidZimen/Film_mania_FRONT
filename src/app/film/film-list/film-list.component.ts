@@ -1,5 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import {Film} from "../../entities/film";
+import {FilmInTableDto} from "../../dto/film-in-table-dto";
+import {FilmService} from "../../services/film.service";
+import {UserService} from "../../services/user.service";
+import {HttpErrorResponse} from "@angular/common/http";
+import {ToastService} from "../../services/toast.service";
 
 @Component({
   selector: 'app-film-list',
@@ -8,25 +12,37 @@ import {Film} from "../../entities/film";
 })
 export class FilmListComponent implements OnInit {
 
-  recFilms: Film[] = [
-    new Film('ForestGump', 2.28, '', 4.7),
-    new Film('1917', 2.28, '', 4.8),
-    new Film('Dark Age', 2.28, '', 3.7),
-    new Film('Lord of the Rings', 2.28, '', 4.8),
-    new Film('Shrek 1', 2.28, '', 4.5),
-    new Film('Shrek 4', 2.28, '', 3.8),
-    new Film('Dark knight', 2.28, '', 5),
-    new Film('Iron man', 2.28, '', 4.8),
-    new Film('The Avengers', 2.28, '', 4.9),
-    new Film('Top Gun: Maverick', 2.28, '', 4.8),
-    new Film('ForestGump', 2.28, '', 4.7),
-    new Film('1917', 2.28, '', 4.8),
-    new Film('Dark Age', 2.28, '', 3.7),
-  ]
+  films: FilmInTableDto[] = [];
+  userId: number | undefined;
 
-  constructor() { }
+  constructor(
+    private filmService: FilmService,
+    private userService: UserService,
+    private toastService: ToastService
+  ) {
+    this.userService.loggedInUser$.subscribe((user) => {
+      if (user === null) {
+        this.userId = undefined;
+      } else {
+        this.userId = user.user?.id;
+      }
+    })
+  }
 
   ngOnInit(): void {
+    this.loadFilms();
+  }
+
+  loadFilms() {
+    this.filmService.getAllFilms(this.userId).subscribe({
+      next: (films) => {
+        this.films = films;
+      },
+      error: (err: HttpErrorResponse) => {
+        this.toastService.showErrorToast("Chyba pri načítavaní filmov", "Skúste to znova prosím.");
+      },
+      complete: () => {}
+    });
   }
 
 }

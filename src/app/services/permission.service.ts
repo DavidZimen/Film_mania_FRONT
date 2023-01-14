@@ -7,16 +7,19 @@ import {BehaviorSubject, Observable} from "rxjs";
 })
 export class PermissionService {
 
-  private authorId: number | undefined;
+  private userId: number | undefined;
 
   constructor(private userService: UserService) {
     this.userService.loggedInUser$.subscribe(
-      (res) => this.authorId = res?.user?.id
+      (res) => this.userId = res?.user?.id
     );
   }
 
   isCorrectAuthor(authorId: number): boolean {
-    return authorId === this.authorId;
+    return authorId === this.userId;
+  }
 
+  isAdmin(id: number): boolean {
+    return id === this.userId;
   }
 }

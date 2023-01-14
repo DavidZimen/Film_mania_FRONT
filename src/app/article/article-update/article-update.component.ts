@@ -1,4 +1,4 @@
-import {Component, Input, OnInit, ViewChild} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {NgForm} from "@angular/forms";
 import {ArticleService} from "../../services/article.service";
 import {ArticleInAuthorListDto} from "../../dto/article-in-author-list-dto";
@@ -17,7 +17,11 @@ export class ArticleUpdateComponent implements OnInit {
   authorId!: number;
   updatingArticle: ArticleInAuthorListDto | undefined;
 
-  constructor(private articleService: ArticleService, private route: ActivatedRoute, private router: Router, private toastService: ToastService) {
+  constructor(
+    private articleService: ArticleService,
+    private route: ActivatedRoute,
+    private router: Router,
+    private toastService: ToastService) {
   }
 
   ngOnInit(): void {

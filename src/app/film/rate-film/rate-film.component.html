@@ -1,0 +1,13 @@
+<ngb-rating *ngIf="ratingId == -1; else updateRatingTempl" [(rate)]="rating" (rateChange)="submitRating()">
+  <ng-template let-fill="fill" let-index="index">
+    <i class="bi-star{{fill === 100 ? '-fill' : ''}}"></i>
+  </ng-template>
+</ngb-rating>
+
+<ng-template #updateRatingTempl>
+  <ngb-rating [(rate)]="updateRating.rating" (rateChange)="submitUpdateRating()">
+    <ng-template let-fill="fill" let-index="index">
+      <i class="bi-star{{fill === 100 ? '-fill' : ''}}"></i>
+    </ng-template>
+  </ngb-rating>
+</ng-template>

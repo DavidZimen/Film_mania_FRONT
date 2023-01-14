@@ -18,3 +18,7 @@ body {
 :root {
   --top-paddaing: 65px;
 }
+
+.bi-star-fill {
+  color: #ffc107;
+}

@@ -1,0 +1,118 @@
+<div class="container-md">
+  <div class="row mt-2">
+    <button class="btn btn-primary" [routerLink]="['add_actor']" aria-current="page">Pridať herca</button>
+  </div>
+
+  <div class="row">
+    <div class="col-lg-4">
+      <div *ngFor="let actor1 of actorsFirst">
+
+        <div class="card mt-2">
+          <div style='height: 200px;width: 200px'>
+            <img src="data:image/png;base64,{{actor1.actorImage?.image}}" class="card-img-top" alt="actorPhoto">
+          </div>
+          <div class="card-body">
+            <h5 class="card-title">{{actor1.name}}</h5>
+            <p class="card-text">{{actor1.description}}</p>
+            <a [routerLink]="['update_actor', actor1.id]" class="btn btn-primary">Upraviť</a>
+            <button class="btn btn-danger ms-2" [attr.data-bs-target]="'#deleteActorModal'+actor1.id" data-bs-toggle="modal">Odstrániť</button>
+          </div>
+        </div>
+
+        <!-- Modal -->
+        <div class="modal fade in" id="deleteActorModal{{actor1.id}}" tabindex="-1" role="dialog" aria-labelledby="deleteArticleModal" aria-hidden="true">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="deleteActorModalTitle{{actor1.id}}">Varovanie</h5>
+                <button type="button" class="btn-close" #closeButton data-bs-dismiss="modal" aria-label="Close"></button>
+              </div>
+              <div class="modal-body">
+                Ste si istý, že chcete odstrániť tohto herca ?
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Zavrieť</button>
+                <button type="button" class="btn btn-danger" data-bs-dismiss="modal" (click)="deleteActor(actor1.id)">Vymazať</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="col-lg-4">
+      <div *ngFor="let actor2 of actorsSecond">
+
+        <div class="card mt-2">
+          <div style='height: 200px;width: 200px'>
+            <img src="data:image/png;base64,{{actor2.actorImage?.image}}" class="card-img-top" alt="actorPhoto">
+          </div>
+          <div class="card-body">
+            <h5 class="card-title">{{actor2.name}}</h5>
+            <p class="card-text">{{actor2.description}}</p>
+            <a [routerLink]="['update_actor', actor2.id]" class="btn btn-primary">Upraviť</a>
+            <button class="btn btn-danger ms-2" [attr.data-bs-target]="'#deleteActorModal'+actor2.id" data-bs-toggle="modal">Odstrániť</button>
+          </div>
+        </div>
+
+        <!-- Modal -->
+        <div class="modal fade in" id="deleteActorModal{{actor2.id}}" tabindex="-1" role="dialog" aria-labelledby="deleteArticleModal" aria-hidden="true">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="deleteActorModalTitle{{actor2.id}}">Varovanie</h5>
+                <button type="button" class="btn-close" #closeButton data-bs-dismiss="modal" aria-label="Close"></button>
+              </div>
+              <div class="modal-body">
+                Ste si istý, že chcete odstrániť tohto herca ?
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Zavrieť</button>
+                <button type="button" class="btn btn-danger" data-bs-dismiss="modal" (click)="deleteActor(actor2.id)">Vymazať</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="col-lg-4">
+      <div *ngFor="let actor3 of actorThird">
+
+        <div class="card mt-2">
+          <div style='height: 200px;width: 200px'>
+            <img src="data:image/png;base64,{{actor3.actorImage?.image}}" class="card-img-top" alt="actorPhoto">
+          </div>
+          <div class="card-body">
+            <h5 class="card-title">{{actor3.name}}</h5>
+            <p class="card-text">{{actor3.description}}</p>
+            <a [routerLink]="['update_actor', actor3.id]" class="btn btn-primary">Upraviť</a>
+            <button class="btn btn-danger ms-2" [attr.data-bs-target]="'#deleteActorModal'+actor3.id" data-bs-toggle="modal">Odstrániť</button>
+          </div>
+        </div>
+
+        <!-- Modal -->
+        <div class="modal fade in" id="deleteActorModal{{actor3.id}}" tabindex="-1" role="dialog" aria-labelledby="deleteArticleModal" aria-hidden="true">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="deleteActorModalTitle{{actor3.id}}">Varovanie</h5>
+                <button type="button" class="btn-close" #closeButton data-bs-dismiss="modal" aria-label="Close"></button>
+              </div>
+              <div class="modal-body">
+                Ste si istý, že chcete odstrániť tohto herca ?
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Zavrieť</button>
+                <button type="button" class="btn btn-danger" data-bs-dismiss="modal" (click)="deleteActor(actor3.id)">Vymazať</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>

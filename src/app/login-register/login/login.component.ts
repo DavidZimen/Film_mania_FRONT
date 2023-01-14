@@ -6,6 +6,7 @@ import {HttpErrorResponse} from "@angular/common/http";
 import {UserService} from "../../services/user.service";
 import {Dialog, DialogRef} from "@angular/cdk/dialog";
 import {RegisterComponent} from "../register/register.component";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-login',
@@ -21,7 +22,8 @@ export class LoginComponent implements OnInit {
     constructor(
       private loginRegisterService: LoginRegisterService,
       private userService: UserService,
-      private toastService: ToastService
+      private toastService: ToastService,
+      private router: Router
     ) { }
 
     ngOnInit(): void {
@@ -41,6 +43,8 @@ export class LoginComponent implements OnInit {
           });
 
           this.toastService.showSuccessToast("Prihásenie prebehlo úspešne");
+          this.router.navigate(['']);
+
         },
         error: (error: HttpErrorResponse) => {
           if (error.status === 401) this.toastService.showErrorToast("Chyba prihlásenia", "Zadané heslo nie je správne");
