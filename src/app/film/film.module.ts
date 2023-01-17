@@ -3,8 +3,10 @@ import { CommonModule } from '@angular/common';
 import {RecFilmCardComponent} from "./rec-film-card/rec-film-card.component";
 import {FilmListComponent} from "./film-list/film-list.component";
 import {HeaderFooterModule} from "../header-footer/header-footer-module";
-import {NgbRatingModule} from "@ng-bootstrap/ng-bootstrap";
+import {NgbModalModule, NgbRatingModule} from "@ng-bootstrap/ng-bootstrap";
 import { RateFilmComponent } from './rate-film/rate-film.component';
+import { FilmDetailComponent } from './film-detail/film-detail.component';
+import {RouterLink} from "@angular/router";
 
 
 
@@ -12,12 +14,15 @@ import { RateFilmComponent } from './rate-film/rate-film.component';
   declarations: [
     RecFilmCardComponent,
     FilmListComponent,
-    RateFilmComponent
+    RateFilmComponent,
+    FilmDetailComponent
   ],
   imports: [
     CommonModule,
     HeaderFooterModule,
-    NgbRatingModule
+    NgbRatingModule,
+    NgbModalModule,
+    RouterLink
   ],
   exports: [
     RecFilmCardComponent,

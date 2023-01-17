@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import {ActorUpdateDto} from "../../dto/actor-update-dto";
-import {ActorService} from "../../services/actor.service";
-import {FilmPartImageService} from "../../services/film-part-image.service";
+import {ActorUpdateDto} from "../../../dto/actor-update-dto";
+import {ActorService} from "../../../services/actor.service";
+import {FilmPartImageService} from "../../../services/film-part-image.service";
 import {ActivatedRoute, Router} from "@angular/router";
-import {ToastService} from "../../services/toast.service";
+import {ToastService} from "../../../services/toast.service";
 import {NgForm} from "@angular/forms";
-import {FilmPartImage} from "../../entities/film-part-image";
+import {FilmPartImage} from "../../../entities/film-part-image";
 
 @Component({
   selector: 'app-admin-actor-update',

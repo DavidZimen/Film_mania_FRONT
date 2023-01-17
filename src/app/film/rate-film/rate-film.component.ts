@@ -35,10 +35,10 @@ export class RateFilmComponent implements OnInit {
   }
 
   submitRating(): void {
-    if (this.justLoaded) {
-      this.justLoaded = false;
-      return;
-    }
+    // if (this.justLoaded) {
+    //   this.justLoaded = false;
+    //   return;
+    // }
 
     if (this.userId === undefined) {
       this.addRating.rating = 0;
@@ -62,8 +62,9 @@ export class RateFilmComponent implements OnInit {
   }
 
   submitUpdateRating(): void {
-    if (this.justLoaded) {
-      this.justLoaded = false;
+    if (this.userId === undefined) {
+      this.updateRating.rating = 0;
+      this.toastService.showInfoToast("Pre hodnotenie sa musíte prihlásiť");
       return;
     }
 

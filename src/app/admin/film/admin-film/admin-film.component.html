@@ -1,0 +1,49 @@
+<div class="container-md mt-2">
+    <button class="col-3 col-md-2 col-xl-1 btn btn-dark" [routerLink]="['add_film']" aria-current="page">Pridať</button>
+
+    <div class="table-responsive mt-2">
+      <table class="table table-light table-striped table-hover caption-top">
+        <thead>
+          <tr>
+            <th class="col-4">Názov</th>
+            <th class="col-2">Dĺžka [min]</th>
+            <th class="col-2">Rok vydania</th>
+            <th class="col-4">Akcie</th>
+          </tr>
+        </thead>
+
+        <tbody *ngFor="let film of films">
+          <tr>
+            <td routerLink="/films_list/film/{{film.id}}">{{film.title}}</td>
+            <td routerLink="/films_list/film/{{film.id}}">{{film.duration}}</td>
+            <td>{{film.year}}</td>
+            <td>
+              <button class="me-1 btn btn-primary" [routerLink]="['update_film', film.id]"><i class="bi bi-pen"></i></button>
+              <button class="btn btn-danger" data-bs-toggle="modal" [attr.data-bs-target]="'#deleteFilmModal'+film.id"><i class="bi bi-x-lg"></i></button>
+            </td>
+          </tr>
+
+          <!-- Delete Modal -->
+          <div class="modal fade in" id="deleteFilmModal{{film.id}}" tabindex="-1" role="dialog" aria-labelledby="deleteFilmModal" aria-hidden="true">
+            <div class="modal-dialog">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title" id="deleteFilmModalTitle{{film.id}}">Varovanie</h5>
+                </div>
+                <div class="modal-body">
+                  Ste si istý, že chcete odstrániť film {{film.title}}?
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Zavrieť</button>
+                  <button type="button" class="btn btn-danger" data-bs-dismiss="modal" (click)="deleteFilm(film.id)">Vymazať {{film.id}}</button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </tbody>
+      </table>
+    </div>
+</div>
+
+<app-footer></app-footer>

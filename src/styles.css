@@ -9,6 +9,7 @@ body {
   font-family: Roboto, "Helvetica Neue", sans-serif;
   padding-top: var(--top-paddaing);
   /*background-image: url("src/assets/background.jpg") !important;*/
+  background-color: transparent;
   height: 100%;
   background-repeat: no-repeat;
   background-size: cover;
@@ -21,4 +22,8 @@ body {
 
 .bi-star-fill {
   color: #ffc107;
+}
+
+.card {
+  background-color: whitesmoke;
 }

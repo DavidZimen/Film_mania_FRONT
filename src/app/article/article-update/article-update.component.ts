@@ -40,6 +40,7 @@ export class ArticleUpdateComponent implements OnInit {
 
       const articleImage = new FormData();
       this.updatingArticle!.articleImage === null ? articleImage.append('image', this.uploadedImage) : articleImage.append(`${this.updatingArticle!.articleImage.id}`, this.uploadedImage);
+      console.log(articleImage);
 
       this.articleService.updateArticleImage(articleImage).subscribe(
         {
@@ -60,6 +61,7 @@ export class ArticleUpdateComponent implements OnInit {
     this.articleService.updateArticle(this.updatingArticle!).subscribe(
       {
         next: (data) => {
+          console.log(this.updatingArticle);
           this.toastService.showSuccessToast("Článok úspešne aktualizovaný.");
           setTimeout(() => this.router.navigate(['/author_articles', this.authorId]), 500);
         },

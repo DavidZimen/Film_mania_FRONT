@@ -15,6 +15,7 @@ import { PageNotFoundComponent } from './page-not-found/page-not-found.component
 import {HomeModule} from "./home/home.module";
 import {PaginationModule} from "./pagination/pagination.module";
 import {AdminModule} from "./admin/admin.module";
+import {NgMultiSelectDropDownModule} from "ng-multiselect-dropdown";
 
 @NgModule({
     declarations: [
@@ -34,7 +35,8 @@ import {AdminModule} from "./admin/admin.module";
         HomeModule,
         AdminModule,
         PaginationModule,
-        NgbModule
+        NgbModule,
+        NgMultiSelectDropDownModule.forRoot()
     ],
     providers: [],
     bootstrap: [AppComponent]

@@ -1,0 +1,104 @@
+<div class="container-md mt-2 mt-2">
+  <button class="col-3 col-md-2 col-xl-1 btn btn-dark" data-bs-toggle="modal" data-bs-target="#addGenreModal">Pridať</button>
+
+  <div class="modal fade" id="addGenreModal" tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Pridanie žánru</h5>
+        </div>
+
+        <form #genreForm="ngForm" (ngSubmit)="addGenre(genreForm)">
+          <div class="modal-body">
+
+            <div class="form-group">
+              <label for="genre-name" class="col-form-label">Názov</label>
+              <input type="text" id="genre-name" class="form-control" [(ngModel)]="newGenreName" required name="genre-name">
+            </div>
+
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary mt-2 me-2" #closeButton data-bs-dismiss="modal">Zavrieť</button>
+            <button type="submit" class="btn btn-success mt-2" [disabled]="!genreForm.form.valid">Uložiť</button>
+          </div>
+        </form>
+
+      </div>
+    </div>
+  </div>
+
+
+  <div class="row justify-content-center">
+      <div class="table-responsive mt-2">
+        <table class="table table-striped table-hover caption-top text-sm-center">
+          <thead class="table-light">
+            <tr>
+              <th>Id</th>
+              <th>Názov</th>
+              <th>Akcie</th>
+            </tr>
+          </thead>
+
+          <tbody class="table-light" *ngFor="let genre of genres">
+            <tr>
+              <td>{{genre.id}}</td>
+              <td>{{genre.name}}</td>
+              <td>
+                <button class="me-1 btn btn-primary" data-bs-toggle="modal" (click)="onUpdateClick(genre.id, genre.name)" data-bs-target="#updateGenreModal"><i class="bi bi-pen"></i></button>
+                <button class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deleteGenreModal"><i class="bi bi-x-lg"></i></button>
+              </td>
+            </tr>
+
+            <!-- Delete Modal -->
+            <div class="modal fade in" id="deleteGenreModal" tabindex="-1" role="dialog" aria-labelledby="deleteGenreModal" aria-hidden="true">
+              <div class="modal-dialog">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h5 class="modal-title" id="deleteGenreModalTitle">Varovanie</h5>
+                  </div>
+                  <div class="modal-body">
+                    Ste si istý, že chcete odstrániť žáner {{genre.name}}?
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Zavrieť</button>
+                    <button type="button" class="btn btn-danger" data-bs-dismiss="modal" (click)="deleteGenre(genre.id)">Vymazať</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+          </tbody>
+        </table>
+      </div>
+  </div>
+
+<!--  &lt;!&ndash; Update modal &ndash;&gt;-->
+<!--  <div class="modal fade in" id="updateGenreModal" tabindex="-1" role="dialog" aria-labelledby="updateGenreModal" aria-hidden="true">-->
+<!--    <div class="modal-dialog modal-dialog-centered">-->
+<!--      <div class="modal-content">-->
+<!--        <div class="modal-header">-->
+<!--          <h5 class="modal-title" id="updateGenreModalTitle">Upravenie žánru</h5>-->
+<!--        </div>-->
+
+<!--        <form #genreUpdateForm="ngForm" (ngSubmit)="updateGenre(updatingGenre.id)">-->
+<!--          <div class="modal-body">-->
+
+<!--            <div class="form-group">-->
+<!--              <label for="genre-name-update" class="col-form-label">Názov</label>-->
+<!--              <input type="text" id="genre-name-update" class="form-control" [(ngModel)]="updatingGenre.name" required name="genre-name">-->
+<!--            </div>-->
+
+<!--          </div>-->
+<!--          <div class="modal-footer">-->
+<!--            <button type="button" class="btn btn-secondary mt-2 me-2" data-bs-dismiss="modal">Zavrieť</button>-->
+<!--            <button type="submit" class="btn btn-success mt-2" [disabled]="!genreUpdateForm.form.valid">Uložiť</button>-->
+<!--          </div>-->
+<!--        </form>-->
+
+<!--      </div>-->
+<!--    </div>-->
+<!--  </div>-->
+
+</div>
+
+<app-footer></app-footer>

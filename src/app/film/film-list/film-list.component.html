@@ -12,8 +12,8 @@
 
       <tbody *ngFor="let film of films">
         <tr>
-          <td>{{film.title}}</td>
-          <td>{{film.duration}}</td>
+          <td [routerLink]="['film', film.id]">{{film.title}}</td>
+          <td [routerLink]="['film', film.id]">{{film.duration}}</td>
           <td><i class="bi bi-star-fill"></i>  {{film.overallRating}}</td>
           <td>
             <app-rate-film

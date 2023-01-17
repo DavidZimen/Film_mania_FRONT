@@ -1,15 +1,22 @@
 <div class="container-md mb-2 mt-md-2">
-  <div class="row">
-    <div class="col-lg-9">
-      <app-article-list-component [articles]="displayedArticles"></app-article-list-component>
-    </div>
+  <ng-template [ngIf]="userId !== undefined" [ngIfElse]="notLoggedIn">
+    <div class="row">
+      <div class="col-lg-9">
+        <app-article-list-component [articles]="displayedArticles"></app-article-list-component>
+      </div>
 
-    <div class="col-lg-3 sticky-md-top d-none d-lg-block">
-      <app-rec-film-card></app-rec-film-card>
+      <div class="col-lg-3 sticky-md-top d-none d-lg-block">
+        <app-rec-film-card></app-rec-film-card>
+      </div>
     </div>
-  </div>
+  </ng-template>
 
-  <app-paginator class="mt-md-2" [allPagesNumber]="allPages" (changePage)="onPageChange($event)"></app-paginator>
+  <ng-template #notLoggedIn>
+    <app-article-list-component [articles]="displayedArticles"></app-article-list-component>
+  </ng-template>
+
+
+  <app-paginator *ngIf="articles.length > itemsPerPage" class="mt-md-2" [allPagesNumber]="allPages" (changePage)="onPageChange($event)"></app-paginator>
 
 </div>
 

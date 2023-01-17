@@ -26,6 +26,10 @@ export class ActorService {
     return this.http.post<Actor>(`${this.actorUrl}/add`, actorAddDto);
   }
 
+  public getActorsOfFilm(filmId: number): Observable<Actor[]> {
+    return this.http.get<Actor[]>(`${this.actorUrl}/allOfFilm/${filmId}`);
+  }
+
   public updateActor(updateActorDro: ActorUpdateDto): Observable<Actor> {
     return this.http.put<Actor>(`${this.actorUrl}/update`, updateActorDro);
   }

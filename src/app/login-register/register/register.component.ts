@@ -36,7 +36,7 @@ export class RegisterComponent implements OnInit {
       return;
     }
 
-    this.registrationRequestDto.birth_date = Utils.formatDate(+this.object.day, +this.object.month, +this.object.year);
+    this.registrationRequestDto.birth_date = new Utils().formatDate(+this.object.day, +this.object.month, +this.object.year);
 
     const avatarImage = new FormData();
     avatarImage.append('image', this.uploadedImage);

@@ -1,5 +1,5 @@
 <div class="container-md">
-  <form #articleForm="ngForm" (ngSubmit)="onSubmit(articleForm)">
+  <form #actorForm="ngForm" (ngSubmit)="onSubmit(actorForm)">
     <div class="modal-body">
 
       <div class="form-group">
@@ -20,7 +20,7 @@
     </div>
     <div class="modal-footer">
       <button type="button" class="btn btn-secondary mt-2 me-2" (click)="goBack()">Zavrieť</button>
-      <button type="submit" class="btn btn-success mt-2" [disabled]="!articleForm.form.valid">Uložiť</button>
+      <button type="submit" class="btn btn-success mt-2" [disabled]="!actorForm.form.valid">Uložiť</button>
     </div>
   </form>
 </div>

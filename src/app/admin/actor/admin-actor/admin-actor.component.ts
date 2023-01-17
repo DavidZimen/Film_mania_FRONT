@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import {Actor} from "../../entities/actor";
-import {ActorService} from "../../services/actor.service";
+import {Actor} from "../../../entities/actor";
+import {ActorService} from "../../../services/actor.service";
 import {HttpErrorResponse} from "@angular/common/http";
-import {ToastService} from "../../services/toast.service";
-import {PermissionService} from "../../services/permission.service";
+import {ToastService} from "../../../services/toast.service";
+import {PermissionService} from "../../../services/permission.service";
 import {ActivatedRoute, Router} from "@angular/router";
 
 @Component({

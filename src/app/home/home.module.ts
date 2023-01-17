@@ -6,8 +6,6 @@ import {PaginationModule} from "../pagination/pagination.module";
 import {HeaderFooterModule} from "../header-footer/header-footer-module";
 import {FilmModule} from "../film/film.module";
 
-
-
 @NgModule({
   declarations: [
     HomePageComponent

@@ -1,5 +1,10 @@
 .list-group-item {
   border: none;
+  background-color: whitesmoke;
+}
+
+.card {
+  border-color: var(--bs-dark);
 }
 
 .sticky-md-top {

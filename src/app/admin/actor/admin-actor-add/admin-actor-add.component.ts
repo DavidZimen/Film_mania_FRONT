@@ -1,8 +1,8 @@
-import {Component, Input, OnInit} from '@angular/core';
-import {ActorService} from "../../services/actor.service";
-import {FilmPartImageService} from "../../services/film-part-image.service";
-import {ToastService} from "../../services/toast.service";
-import {ActorAddDto} from "../../dto/actor-add-dto";
+import {Component, OnInit} from '@angular/core';
+import {ActorService} from "../../../services/actor.service";
+import {FilmPartImageService} from "../../../services/film-part-image.service";
+import {ToastService} from "../../../services/toast.service";
+import {ActorAddDto} from "../../../dto/actor-add-dto";
 import {ActivatedRoute, Router} from "@angular/router";
 import {NgForm} from "@angular/forms";
 import {HttpErrorResponse} from "@angular/common/http";

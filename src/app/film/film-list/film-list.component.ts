@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {FilmInTableDto} from "../../dto/film-in-table-dto";
 import {FilmService} from "../../services/film.service";
 import {UserService} from "../../services/user.service";

@@ -1,0 +1,52 @@
+<div class="container-md">
+
+  <div *ngIf="filmImage != null" class="m-2">
+    <img src="data:image/png;base64,{{filmImage.image}}" class="img-fluid" alt="FilmImage">
+  </div>
+
+  <div class="mt-1 d-flex flex-column">
+    <div class="d-flex justify-content-center"><h1>{{film.title}}</h1></div>
+    <div class="d-flex flex-row justify-content-center">
+      <div *ngFor="let genre of genres">
+        <span class="badge me-1">{{genre.name}}</span>
+      </div>
+    </div>
+    <div class="mt-3 d-flex justify-content-center"><p>{{film.description}}</p></div>
+  </div>
+  <hr>
+
+  <div class="mt-1 d-flex flex-column">
+    <div class="d-flex justify-content-center"><h3>Rok vydania</h3></div>
+    <div class="d-flex justify-content-center"><p>{{film.year}}</p></div>
+    <div class="d-flex justify-content-center"><h3>Dĺžka</h3></div>
+    <div class="d-flex justify-content-center"><p>{{film.duration}} min.</p></div>
+  </div>
+  <hr>
+
+  <div class="mt-1 d-flex d-flex flex-column">
+    <div class="d-flex justify-content-center"><h3>Režisér</h3></div>
+    <div class=" mt-2 d-flex justify-content-center">
+      <img src="data:image/png;base64,{{director!.directorImage?.image}}" style='height: 150px; width: 150px' alt="DirectorImage">
+      <h5 class="align-self-center">{{director.name}}</h5>
+    </div>
+  </div>
+  <hr>
+
+  <div class="mt-1 mb-3 d-flex flex-column">
+    <div class="d-flex justify-content-center"><h3>Herci</h3></div>
+    <div class="d-flex flex-row justify-content-center flex-nowrap overflow-auto">
+      <div *ngFor="let actor of actors">
+        <div class="card mt-2 me-2" style="max-width: 170px; max-height: 250px">
+          <div class="ms-md-1" style='height: 150px; width: 150px'>
+            <img src="data:image/png;base64,{{actor.actorImage?.image}}" class="card-img-top" alt="ActorPhoto">
+          </div>
+          <div class="card-body">
+            <h6 class="card-title">{{actor.name}}</h6>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<app-footer></app-footer>
