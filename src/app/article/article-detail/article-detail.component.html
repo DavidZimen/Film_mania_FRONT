@@ -1,5 +1,5 @@
 <div class="container-md p-0">
-  <img class="m-2 responsive" src="assets/1.jpg" alt="article_image">
+  <img *ngIf="detailedArticle!.articleImage !== null" class="m-2 responsive" src="data:image/png;base64,{{detailedArticle!.articleImage.image}}" alt="article_image">
   <h2 class="m-2">{{detailedArticle!.title }}</h2>
   <p class="m-2 pb-2">{{ detailedArticle!.text }}</p>
 </div>

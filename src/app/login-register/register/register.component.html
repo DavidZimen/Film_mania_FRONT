@@ -1,0 +1,109 @@
+<div class="container py-5 h-100">
+  <div class="row justify-content-center align-items-center h-100">
+    <div class="col-12 col-lg-9 col-xl-7">
+      <div class="card shadow-2-strong card-registration" style="border-radius: 15px;">
+        <div class="card-body p-4 p-md-5">
+          <h3 class="mb-4 pb-2 pb-md-0 mb-md-5 text-uppercase">Registrácia</h3>
+          <form #registerForm="ngForm" (ngSubmit)="register(registerForm)">
+
+            <div class="row">
+              <div class="col-md-6 mb-4">
+
+                <div class="form-outline">
+                  <label class="form-label" for="firstName">Meno</label>
+                  <input type="text" id="firstName" class="form-control form-control-lg" name="firstName" [(ngModel)]="registrationRequestDto.fisrtName"/>
+                </div>
+
+              </div>
+              <div class="col-md-6 mb-4">
+
+                <div class="form-outline">
+                  <label class="form-label" for="lastName">Priezvisko</label>
+                  <input type="text" id="lastName" class="form-control form-control-lg" name="lastName" [(ngModel)]="registrationRequestDto.lastName"/>
+                </div>
+
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col-md-6 mb-4 d-flex align-items-center">
+
+                <div class="form-outline datepicker w-100">
+                  <label for="birthdayDate" class="form-label">Dátum narodenia</label>
+                  <div class="input-group" id="datepicker">
+                    <input type="text" class="form-control form-control-lg" id="birthdayDate" ngbDatepicker #birthday="ngbDatepicker" name="birthDate" [(ngModel)]="object"/>
+                    <span class="input-group-text bg-white">
+                      <i class="bi bi-calendar-event" (click)="birthday.toggle()"></i>
+                    </span>
+                  </div>
+                </div>
+
+              </div>
+              <div class="col-md-6 mb-4">
+
+                <div class="form-outline">
+                  <label class="form-label" for="email">E-mail</label>
+                  <input type="email" id="email" class="form-control form-control-lg" name="email" [(ngModel)]="registrationRequestDto.email" email required #email="ngModel"/>
+
+<!--                  <div *ngIf="email.invalid && (email.dirty || email.touched)" class="alert">-->
+<!--                    <div *ngIf="email.errors?.['required']">E-mail je povinný.</div>-->
+<!--                    <div *ngIf="email.errors?.['email']">Email má zlý tvar.</div>-->
+<!--                  </div>-->
+                </div>
+
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col-12 mb-4 pb-2">
+                <div class="form-outline">
+                  <label for="role" class="form-label">Vyberte rolu</label>
+                  <select id="role" class="form-control form-control-lg" name="role" [(ngModel)]="registrationRequestDto.role">
+                    <option value="NONE" disabled>Vyberte možnosť</option>
+                    <option value="ROLE_USER">Používateľ</option>
+                    <option value="ROLE_AUTHOR">Autor</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col-12 mb-4 pb-2">
+                <div class="form-outline">
+                  <label for="avatar" class="form-label">Profilová fotka</label>
+                  <input id="avatar" class="form-control form-control-lg" type="file" accept="image/png" (change)="onImageUpload($event)">
+                </div>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col-md-6 mb-4 pb-2">
+
+                <div class="form-outline">
+                  <label class="form-label" for="password">Heslo</label>
+                  <input type="password" id="password" class="form-control form-control-lg" name="password" [(ngModel)]="registrationRequestDto.password"/>
+                </div>
+
+              </div>
+              <div class="col-md-6">
+
+                <div class="form-outline">
+                  <label class="form-label" for="passwordConfirmation">Potvrdenie hesla</label>
+                  <input type="password" id="passwordConfirmation" class="form-control form-control-lg" />
+                </div>
+
+              </div>
+            </div>
+
+
+            <div class="mt-4 pt-2">
+              <input class="btn btn-primary btn-lg" type="submit" value="Registrovať" />
+            </div>
+
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+

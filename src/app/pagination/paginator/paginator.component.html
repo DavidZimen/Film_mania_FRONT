@@ -1,0 +1,29 @@
+<div class="row">
+  <div class="col-md-4"></div>
+
+  <div class="col-md-4">
+    <div class="row">
+      <div class="col-2">
+        <button class="btn btn-dark" [disabled]="currentPage === 1" (click)="onFirstPage()"><i class="bi bi-skip-backward-fill"></i></button>
+      </div>
+
+      <div class="col-2">
+        <button class="btn btn-dark ms-md-1 me-md-1" [disabled]="currentPage === 1" (click)="onPreviousPage()"><i class="bi bi-caret-left-fill"></i></button>
+      </div>
+
+      <div class="col-4 d-flex justify-content-center align-items-center">
+        <div>{{currentPage}} / {{allPagesNumber}}</div>
+      </div>
+
+      <div class="col-2">
+        <button class="btn btn-dark ms-md-1 me-md-1" [disabled]="currentPage === allPagesNumber"  (click)="onNextPage()"><i class="bi bi-caret-right-fill"></i></button>
+      </div>
+
+      <div class="col-2">
+        <button class="btn btn-dark" [disabled]="currentPage === allPagesNumber" (click)="onLastPage()"><i class="bi bi-skip-forward-fill"></i></button>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-md-4"></div>
+</div>

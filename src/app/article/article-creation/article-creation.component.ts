@@ -1,8 +1,12 @@
-import {Component, EventEmitter, Input, OnInit, Output, ViewChild} from '@angular/core';
+import {Component, OnInit, ViewChild} from '@angular/core';
 import {ArticleService} from "../../services/article.service";
-import {Article} from "../article";
-import {ArticleCreation} from "../article-creation";
+import {ArticleCreation} from "../../dto/article-creation";
 import {NgForm} from "@angular/forms";
+import {UserService} from "../../services/user.service";
+import {HttpErrorResponse} from "@angular/common/http";
+import {ToastService} from "../../services/toast.service";
+import {Router} from "@angular/router";
+import {Location} from "@angular/common";
 
 @Component({
   selector: 'app-article-creation',
@@ -12,12 +16,20 @@ import {NgForm} from "@angular/forms";
 export class ArticleCreationComponent implements OnInit {
 
   writtenArticle: ArticleCreation;
+  uploadedImage!: File;
   @ViewChild('closeButton') closeButton: any;
-  @Output() newArticleEvent = new EventEmitter<boolean>();
-  @Input() updateArticle: Article | undefined;
 
-  constructor(private articleService: ArticleService) {
+  constructor(
+    private articleService: ArticleService,
+    private userService: UserService,
+    private toastService: ToastService,
+    private router: Router,
+    private location: Location)
+  {
     this.writtenArticle = new ArticleCreation();
+    this.userService.loggedInUser$.subscribe((user) => {
+      this.writtenArticle.author_email = user?.user?.email;
+    })
   }
 
   ngOnInit(): void {
@@ -26,37 +38,50 @@ export class ArticleCreationComponent implements OnInit {
 
   onSubmitArticle(form: NgForm): void {
     if (form.valid) {
-      this.articleService.addArticle(this.writtenArticle).subscribe(
-        {
-          next: (data) => {
-            this.closeButton.nativeElement.click();
-            this.writtenArticle = new ArticleCreation();
-            this.newArticleEvent.emit(true);
-          },
-          error: err => {
-            alert('Something went wrong.');
-          },
-          complete: () => {}
-        }
-      )
+
+      if (this.uploadedImage === undefined) {
+        this.uploadArticle();
+        return;
+      }
+
+      const articleImage = new FormData();
+      articleImage.append('image', this.uploadedImage);
+
+      this.articleService.uploadArticleImage(articleImage).subscribe({
+        next: (imageId) => {
+          this.writtenArticle.image_id = imageId;
+
+          this.uploadArticle();
+        },
+        error: (err: HttpErrorResponse) => {
+          this.toastService.showErrorToast("Chyba pri ukladaní obrázku v článku");
+        },
+        complete: () => {}
+      });
     }
   }
 
-  onSubmitUpdateArticle(form: NgForm): void {
-    if (form.valid && this.updateArticle) {
-      this.articleService.updateArticle(this.updateArticle).subscribe(
-        {
-          next: (data) => {
-            this.closeButton.nativeElement.click();
-            this.writtenArticle = new ArticleCreation();
-            this.newArticleEvent.emit(true);
-          },
-          error: err => {
-            alert('Something went wrong.');
-          },
-          complete: () => {}
-        }
-      )
-    }
+  uploadArticle(): void {
+    this.articleService.addArticle(this.writtenArticle).subscribe(
+      {
+        next: (data) => {
+          //this.closeButton.nativeElement.click();
+          this.writtenArticle = new ArticleCreation();
+          this.toastService.showSuccessToast("Článok úspešne napísaný");
+          setTimeout( () => { this.router.navigate(['home']) }, 500)
+        },
+        error: () => {
+          this.toastService.showErrorToast("Chyba pri ukladaní článku");
+        },
+        complete: () => {}
+      });
+  }
+
+  public onImageUpload(event: any): void {
+    this.uploadedImage = event.target.files[0];
+  }
+
+  goBack(): void {
+    this.location.back();
   }
 }

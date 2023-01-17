@@ -1,0 +1,28 @@
+<button class="btn btn-outline-light dropdown-toggle me-3" id="loginDropdownButton" title="Search" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Prihlásiť sa</button>
+
+<div class="dropdown-menu dropdown-menu-md-end me-3" aria-labelledby="loginDropdownButton">
+
+  <form #loginForm="ngForm" (ngSubmit)="login()" class="px-4 py-3">
+    <div class="form-outline mb-3">
+      <label class="form-label" for="mail">E-mail</label>
+      <input type="email" class="form-control" id="mail" name="mail" [(ngModel)]="userDto.email" placeholder="E-mail">
+    </div>
+
+    <div class="form-outline mb-3">
+      <label class="form-label" for="password">Heslo</label>
+      <input type="password" class="form-control" id="password" name="password" [(ngModel)]="userDto.password" placeholder="Heslo">
+    </div>
+
+    <div class="form-check">
+      <input type="checkbox" class="form-check-input" id="stayLogged" name="stayLogged" [(ngModel)]="stayLoggedIn">
+      <label class="form-check-label" for="stayLogged">Zostať prihlásený</label>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Prihlásiť sa</button>
+  </form>
+
+  <div class="dropdown-divider"></div>
+  <a class="dropdown-item" routerLink="/register">Ešte nemáte účet? Registrujte sa</a>
+  <a class="dropdown-item" href="#">Zabudnuté heslo ?</a>
+
+</div>

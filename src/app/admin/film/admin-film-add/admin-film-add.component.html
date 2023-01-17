@@ -1,0 +1,73 @@
+<div class="container-md">
+  <form #filmForm="ngForm" (ngSubmit)="onSubmit(filmForm)">
+    <div class="modal-body mt-2">
+
+      <div class="form-group">
+        <label for="article-title" class="col-form-label">Názov</label>
+        <input type="text" id="article-title" class="form-control" [(ngModel)]="addedFilm.title" required name="article-title">
+      </div>
+
+      <div class="form-group">
+        <label for="article-year" class="col-form-label">Rok vydania</label>
+        <input type="number" id="article-year" class="form-control" [(ngModel)]="addedFilm.year" required min="1850" max="2023" name="article-year">
+      </div>
+
+      <div class="form-group">
+        <label for="article-duration" class="col-form-label">Dĺžka</label>
+        <input type="number" id="article-duration" class="form-control" [(ngModel)]="addedFilm.duration" required min="30" name="article-duration">
+      </div>
+
+      <div class="form-group">
+        <label for="film-director" class="col-form-label">Režisér</label>
+        <ng-multiselect-dropdown
+          id="film-director"
+          [placeholder]="'Vyberte režiséra'"
+          [settings]="dropdownSettingsDirector"
+          [data]="directors"
+          (onSelect)="onItemSelectDirector($event)"
+          (onDeSelect)="onItemDeselectDirector($event)"
+        ></ng-multiselect-dropdown>
+      </div>
+
+      <div class="form-group">
+        <label for="film-actors" class="col-form-label">Herci</label>
+        <ng-multiselect-dropdown
+          id="film-actors"
+          [placeholder]="'Vyberte hercov'"
+          [settings]="dropdownSettings"
+          [data]="actors"
+          [(ngModel)]="addedFilm.actorIds"
+          (onSelect)="onItemSelectActor($event)"
+          (onDeSelect)="onItemDeselectActor($event)"
+        ></ng-multiselect-dropdown>
+      </div>
+
+      <div class="form-group">
+        <label for="film-genres" class="col-form-label">Žánre</label>
+        <ng-multiselect-dropdown
+          id="film-genres"
+          [placeholder]="'Vyberte žánre'"
+          [settings]="dropdownSettings"
+          [data]="genres"
+          (onSelect)="onItemSelectGenre($event)"
+          (onDeSelect)="onItemDeselectGenre($event)"
+        ></ng-multiselect-dropdown>
+      </div>
+
+      <div class="form-group">
+        <label for="article-image" class="col-form-label">Fotka</label>
+        <input id="article-image" class="form-control" type="file" accept="image/png" (change)="onImageUpload($event)">
+      </div>
+
+      <div class="form-group">
+        <label for="article" class="col-form-label">Popis</label>
+        <textarea id="article" class="form-control h-100" rows="8" [(ngModel)]="addedFilm.description" required name="article"></textarea>
+      </div>
+
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-secondary mt-2 me-2" (click)="goBack()">Zavrieť</button>
+      <button type="submit" class="btn btn-success mt-2" [disabled]="!filmForm.form.valid">Uložiť</button>
+    </div>
+  </form>
+</div>

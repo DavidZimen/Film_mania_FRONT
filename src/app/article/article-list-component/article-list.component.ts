@@ -1,61 +1,22 @@
-import {Component, OnDestroy, OnInit, ViewChild} from '@angular/core';
-import { Article } from "../article";
-import { LoremIpsum } from "lorem-ipsum";
-import { Author } from "../author";
+import {Component, Input, OnDestroy, OnInit} from '@angular/core';
 import {ArticleService} from "../../services/article.service";
-import {Observable, Subscription} from "rxjs";
-
-
-const lorem = new LoremIpsum({
-  sentencesPerParagraph: {
-    max: 8,
-    min: 4
-  },
-  wordsPerSentence: {
-    max: 16,
-    min: 4
-  }
-});
+import {ArticleInMainListDto} from "../../dto/article-in-main-list-dto";
 
 @Component({
   selector: 'app-article-list-component',
   templateUrl: './article-list.component.html',
   styleUrls: ['./article-list.component.css']
 })
-export class ArticleListComponent implements OnInit, OnDestroy {
+export class ArticleListComponent implements OnInit {
 
-  @ViewChild('closeButton') closeButton: any;
-  articles: Article[] = [];
+  @Input() articles: ArticleInMainListDto[] = [];
 
-  constructor(private articleService: ArticleService) {
+  constructor() {
   }
 
   ngOnInit(): void {
-    this.loadArticles();
   }
 
-  ngOnDestroy(): void {
-  }
-
-  loadArticles(): void {
-    this.articleService.getAllArticles().subscribe(
-      res => { this.articles = res }
-    )
-  }
-
-  deleteArticle(id: number): void {
-    console.log(id);
-    this.articleService.deleteArcticle(id).subscribe(
-      {
-        next: (data) => {
-          this.loadArticles();
-        },
-        error: (e) => { alert('Doslo ku chybe.') },
-        complete: () => {}
-      }
-    );
-    this.closeButton.nativeElement.click();
-  }
 }
 
 
